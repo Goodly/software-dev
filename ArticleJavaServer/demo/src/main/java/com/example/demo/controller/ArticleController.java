@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entities.ArticleEntity;
 import com.example.demo.service.ArticleService;
 import com.example.demo.service.ScrapeService;
+import com.example.demo.service.BuzzService;
 
 @RestController
 @CrossOrigin(origins="*")
@@ -32,6 +33,7 @@ public class ArticleController {
 	@Autowired ArticleService articleService;
 	@Autowired ScrapeService scrapeService;
 	//@Autowired FileService fileService;
+	@Autowired BuzzService buzzService;
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public List<ArticleEntity> getAllArticles(
@@ -75,13 +77,22 @@ public class ArticleController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public void updateArticles(
-		@RequestParam(required = true, name="url") String url
+	public List<ArticleEntity> updateArticles(
 	) {
-		List<ArticleEntity> articles = findAllArticles()
+		List<ArticleEntity> list = new ArrayList<ArticleEntity>();
+		List<ArticleEntity> articles = articleService.findAllArticles();
+		for (ArticleEntity article : articles) {
+			String url = article.getUrl();
+			JSONObject jArticle = buzzService.getBuzz(url);
+			/*if (jArticle["results"].l == 0) {
+				System.out.println("NO UPDATES");
+				return articles;
+			}*/
+			ArticleEntity updatedArticle = articleService.updateArticleWithBuzz(jArticle, article);
+			list.set(i, updatedArticle);
+		}
+		return list;
 
-		ArticleEntity updateArticleWithBuzz(JSONObject jArticle, ArticleEntity article)
-		
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

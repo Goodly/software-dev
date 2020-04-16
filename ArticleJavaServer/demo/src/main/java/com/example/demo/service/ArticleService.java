@@ -105,7 +105,6 @@ public class ArticleService {
 		List<ArticleEntity> list = new ArrayList<ArticleEntity>();
 		articleIterable.forEach(list::add);
 		return list;
-		
 	}
 	
 	public ArticleEntity updateStatus(Integer id, String status, String comment) {
