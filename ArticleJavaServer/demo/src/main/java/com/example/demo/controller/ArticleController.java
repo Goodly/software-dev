@@ -76,7 +76,7 @@ public class ArticleController {
 		return returnVal.toString(3);
 	}
 	
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public List<ArticleEntity> updateArticles(
 	) {
 		List<ArticleEntity> list = new ArrayList<ArticleEntity>();
@@ -84,16 +84,31 @@ public class ArticleController {
 		for (ArticleEntity article : articles) {
 			String url = article.getUrl();
 			JSONObject jArticle = buzzService.getBuzz(url);
-			/*if (jArticle["results"].l == 0) {
+			if (jArticle["results"].l == 0) {
 				System.out.println("NO UPDATES");
 				return articles;
-			}*/
+			}
 			ArticleEntity updatedArticle = articleService.updateArticleWithBuzz(jArticle, article);
 			list.set(i, updatedArticle);
 		}
 		return list;
 
+	}*/
+
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public ArticleEntity updateArticles(
+			@RequestParam(required = true, name="url") String url
+	) {
+			JSONObject jArticle = buzzService.getBuzz(url);
+			ArticleEntity article = articleService.findArticleByUrl(url);
+			if (jArticle.get("results").toString().equals("[]")) {
+				System.out.println("NO UPDATES");
+				return article;
+			}
+			ArticleEntity updatedArticle = articleService.updateArticleWithBuzz(jArticle, article);
+		return updatedArticle;
 	}
+
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ArticleEntity getArticleById(@PathVariable("id") Integer id) {
