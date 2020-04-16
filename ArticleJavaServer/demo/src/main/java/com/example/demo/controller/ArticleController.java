@@ -74,6 +74,16 @@ public class ArticleController {
 		return returnVal.toString(3);
 	}
 	
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public void updateArticles(
+		@RequestParam(required = true, name="url") String url
+	) {
+		List<ArticleEntity> articles = findAllArticles()
+
+		ArticleEntity updateArticleWithBuzz(JSONObject jArticle, ArticleEntity article)
+		
+	}
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ArticleEntity getArticleById(@PathVariable("id") Integer id) {
 		return articleService.findArticleById(id);
