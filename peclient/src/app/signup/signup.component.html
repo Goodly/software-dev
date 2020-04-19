@@ -1,0 +1,34 @@
+<div class="center padding background">
+	<form [formGroup]="signupForm">
+
+		<div>
+			<label for="email">email</label>
+			<input type="text" formControlName="email">
+		</div>
+
+		<div>
+			<label for="pass">password</label>
+			<input type="text" formControlName="pass">
+		</div>
+
+		<div>
+			<label for="pass">password again</label>
+			<input type="text" formControlName="passAgain">
+		</div>
+
+	</form>
+
+	<button type="button" (click)="signup()">sign up</button>
+
+	<div>
+		<a routerLink="" routerLinkActive="active">back to login</a>
+	</div>
+
+		<div>
+		<a routerLink="/forgot" routerLinkActive="active">forgot password</a>
+	</div>
+
+
+
+
+</div>

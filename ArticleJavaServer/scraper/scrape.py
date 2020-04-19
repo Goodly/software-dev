@@ -7,8 +7,6 @@ import time
 # !pip3 install newspaper3k
 from newspaper import Article
 
-print(os.getcwd())
-
 url = sys.argv[1]
 
 article = Article(url)

@@ -51,11 +51,15 @@ public class FileService {
 	@Autowired ArticleService articleService;
 	@Autowired ArticleRepository articleRepository;
 	
-	public void makeFile(ArticleEntity article) {
+	public boolean fileExists(String pathAndName) {
+		
+		return Files.exists(Paths.get(pathAndName)); 
+	}
+	public ArticleEntity makeFile(ArticleEntity article) {
 
 		String sha256hex = DigestUtils.sha256Hex(article.getArticleText());
+		// set HASH
 		article.setArticleHash(sha256hex);
-		articleRepository.save(article);
 				
 		// strip off https:// or http://
 		String tempURL = article.getUrl();
@@ -103,10 +107,11 @@ public class FileService {
 		
 		Archiver archiver = ArchiverFactory.createArchiver(ArchiveFormat.TAR, CompressionType.GZIP);
 		
+		File destFile = new File(zipDestDir + URLNoProtocol + sha256hex + ".tgz");
+			
 		try {
 			
 			File archive = archiver.create(zipDestFilename, zipDestDirFile, zipSourceDirFile);
-			File destFile = new File(zipDestDir + URLNoProtocol + sha256hex + ".tgz");
 			destFile.getParentFile().mkdirs();
 			
 			logger.info(archive.toPath().toString());
@@ -120,6 +125,10 @@ public class FileService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		article.setFilename(destFile.toString());
+		return article;
+
 	}
 	
 }

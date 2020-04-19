@@ -118,6 +118,9 @@ public class ArticleEntity implements Serializable {
 
 	@Column(name="article_hash")
 	protected String articleHash = "";
+
+	@Column(name="filename")
+	protected String filename = "";
 /*
 Table: article
 Columns:
@@ -412,6 +415,13 @@ article_hash char(64)
 		this.articleHash = articleHash;
 	}
 
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 	
 	
 }

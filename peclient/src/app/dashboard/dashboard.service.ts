@@ -22,9 +22,11 @@ export class DashboardService {
   getStatuses() {
   	return this.http.get<Status>('/api/status/');
   }
-
-
   searchByStatus(statusCode: string) {
+    if(statusCode == "all" || statusCode == "popular")
+    {
+      return this.http.get<Article>('/api/article/');
+    }
   	return this.http.get<Article>('/api/article?status=' + statusCode);
   }
 

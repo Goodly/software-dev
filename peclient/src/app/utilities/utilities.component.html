@@ -1,0 +1,11 @@
+<form [formGroup]="utilitiesForm">
+	<div>
+		<button type="button" (click)="sendAcceptedToS3()">Send Accepted Articles to s3</button>
+		<textarea formControlName="sendResults"></textarea>
+
+	</div>
+	<div>
+		<button type="button" (click)="getBuzzSumo()">Get BuzzSumo</button>
+		<textarea formControlName="buzzResults"></textarea>
+	</div>
+</form>

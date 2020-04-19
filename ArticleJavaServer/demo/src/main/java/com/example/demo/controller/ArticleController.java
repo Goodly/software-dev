@@ -1,10 +1,7 @@
 package com.example.demo.controller;
 
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import org.json.JSONObject;
@@ -21,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.ArticleEntity;
 import com.example.demo.service.ArticleService;
+import com.example.demo.service.BuzzService;
 import com.example.demo.service.ScrapeService;
 import com.example.demo.service.BuzzService;
 
@@ -118,7 +116,6 @@ public class ArticleController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public ArticleEntity updateArticleFields(@PathVariable("id") Integer id,
 			@RequestBody ArticleEntity article) {
-		logger.info("herrrrrrrrrrrrre>>>>" + id.toString());
 		logger.info("updating article" + ">>>" + article.getTitle() + "<<< >>>" + article.getAuthor() + "<<<<");
 		return articleService.updateArticle(id, article, "article controller - POST update article object");
 	}
@@ -140,5 +137,20 @@ public class ArticleController {
 		return articleService.updateVizData(sha, visData, "article controller - POST update vizdata vy sha");
 	}
 
+	@RequestMapping(value = "/buzz2", method = RequestMethod.GET)
+	public String buzz2() {
+		
+		//buzzService.getTodaysTop();
+		logger.info("in buzz2 controller");
+		return articleService.processBatchArticle().toString();
+		
+	}
 	
+	@RequestMapping(value = "/s3", method = RequestMethod.GET)
+	public String s3() {
+		
+		logger.info("in s3 controller");
+		return articleService.sendToS3();
+		
+	}
 }

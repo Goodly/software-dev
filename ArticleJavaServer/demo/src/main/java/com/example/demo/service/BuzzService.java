@@ -21,7 +21,6 @@ private static org.slf4j.Logger logger = LoggerFactory.getLogger(BuzzService.cla
 
         RestTemplate restTemplate = new RestTemplate();
         StringBuilder url = new StringBuilder("https://api.buzzsumo.com/search/articles.json?q=");
-        //https://www.washingtonpost.com/politics/as-warren-and-buttigieg-rise-the-democratic-presidential-race-is-competitive-and-fluid-a-washington-post-abc-news-poll-finds/2019/11/02/4b7aca3c-fccd-11e9-8906-ab6b60de9124_story.html
         url.append(articleUrl);
         url.append("&api_key=ZjO3Gfio4kfOaZ9K9iSdQcjoGsleT1Gf");
         
@@ -37,11 +36,30 @@ private static org.slf4j.Logger logger = LoggerFactory.getLogger(BuzzService.cla
             logger.info("totalShares: " + buzzEntry.opt("total_shares").toString());
         }
         
-        
-//        logger.info("numWords: " + j.opt("num_words").toString());
-//        logger.info("totalShares: " + j.opt("total_shares").toString());
-//        return response.getBody();
         return buzzEntry;
+	}
+	
+	public JSONArray getTodaysTop() {
+		RestTemplate restTemplate = new RestTemplate();
+		//StringBuilder url = new StringBuilder("https://api.buzzsumo.com/search/trends.json?topic=politics&search_type=trending_now&hours=24&countries=United%20States&count=10");
+		StringBuilder url = new StringBuilder("https://api.buzzsumo.com/search/trends.json?topic=politics&search_type=trending_now&hours=24&count=10");
+        //'https://api.buzzsumo.com/search/trends.json?topic=politics&search_type=trending_now&hours=24&countries=United%20States%2C%20Canada&count=50&api_key=ZjO3Gfio4kfOaZ9K9iSdQcjoGsleT1Gf'
+		url.append("&api_key=ZjO3Gfio4kfOaZ9K9iSdQcjoGsleT1Gf");
+        
+        logger.info(url.toString());
+
+        ResponseEntity<String> response = restTemplate.getForEntity(url.toString(),String.class);
+        String res = response.getBody();
+//        logger.info(res);
+        JSONObject j = new JSONObject(res);
+        logger.info(j.toString(2));
+        JSONArray a = j.optJSONArray("results");
+//        a.forEach(article -> {
+//        	JSONObject ar = (JSONObject) article;
+//        	logger.info(ar.toString(2));
+//        });
+        return a;
+        
 	}
 
 }

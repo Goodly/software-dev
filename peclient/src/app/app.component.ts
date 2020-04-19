@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'peclient';
+  constructor(private elementRef: ElementRef) {
+  	let cognitoEndpoint = this.elementRef.nativeElement.getAttribute('cognitoEndpoint');
+  }
 }

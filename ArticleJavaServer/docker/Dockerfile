@@ -8,15 +8,14 @@ COPY /docker/bashrc_to_docker /root/.bashrc
 # ARG vars exist only during build
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update -q
-RUN apt-get install -q -y --no-install-recommends maven
+RUN apt-get update -q && apt-get install -q -y --no-install-recommends maven
 
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update -q && apt-get install -y --no-install-recommends \
         git-core curl less psmisc rsync \
         software-properties-common \
         build-essential libssl-dev libffi-dev
 
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update -q && apt-get install -y --no-install-recommends \
         python3 python3-dev python3-virtualenv \
         python3-setuptools python3-pip python3-apt \
         libjpeg-dev swig \
@@ -34,6 +33,7 @@ WORKDIR /home/scraper
 COPY ./docker/requirements.txt .
 RUN . ${ACTIVATE} && pip3 install -r requirements.txt
 COPY ./scraper/scrape.py .
+COPY ./scraper/s3-put.py .
 
 RUN rm -rf /var/lib/apt/lists/*
 

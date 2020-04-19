@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.center { text-align: center }
+.background-blue {background-color: #6ec1ea}
+DIV {padding: 10px;}
+.reallybig {font-size: xxx-large; }
+
+.five-percent {width: 5%; }
+.ten-percent {width: 10%; }
+.fifteen-percent {width: 15%; }
+.twenty-percent {width: 20%; }
+.thirty-percent {width: 30%;}
+.fifteen-percent {width: 15%;}
+
+

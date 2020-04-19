@@ -1,0 +1,23 @@
+<div class="center padding background">
+	<form [formGroup]="forgotForm">
+
+		<div>
+			<label for="email">email address</label>
+			<input type="text" formControlName="email">
+		</div>
+
+
+	</form>
+
+	<button type="button" (click)="reset()">send reset email</button>
+
+	<div>
+		<a routerLink="" routerLinkActive="active">back to login</a>
+	</div>
+
+	<div>
+		<a routerLink="/signup" routerLinkActive="active">sign up</a>
+	</div>
+
+
+</div>

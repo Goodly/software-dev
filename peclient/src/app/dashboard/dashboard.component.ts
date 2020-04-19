@@ -30,41 +30,86 @@ export class DashboardComponent implements OnInit {
   		searchType: new FormControl(),
   		searchUrl: new FormControl(),
 		searchTitle: new FormControl(),
-	  });
+		checkAll: new FormControl(),
+		bulkStatus: new FormControl(),
+	});
 
-	  this.dashboardForm.get('statusFilter').valueChanges.subscribe(val => {
-	  	console.log("vvvvvvvvvvvvvv", val)
-	  	this.ds.searchByStatus(val).subscribe((data: Article) => {
-				this.articles = data;
+	// load list of statuses
+	this.ds.getStatuses().subscribe((data: Status) => {
+		this.statuses = data;
+		console.log(this.statuses);
+	});
+	  
+	this.dashboardForm.get('statusFilter').valueChanges.subscribe(val => {
+		console.log("filter value has changed", val)
+		this.ds.searchByStatus(val).subscribe((data: Article) => {
+			this.articles = data;
+			if(val == "popular")
+			{
+			//there's no field for publishedDate so I'm using publishDate instead
+			//sorting by date
+				this.articles.sort(
+	  	  			function(a, b) {
+						if (a.publishDate < b.publishDate) {
+							return 1;
+						}
+						if (a.publishDate > b.publishDate) {
+							return -1;
+						}
+					return 0;
+			});
+			//showing articles 0-49
+			for(let i = this.articles.length - 1; i >= 50;i--) 
+			{
+			this.articles.splice(i, 1);
 			}
-		);
-	  })
+		}
+		});
+	});
+
+	//checkall
+	this.dashboardForm.get('checkAll').valueChanges.subscribe(v => {
+		//console.log("toggling all checkboxes - checked = ", v);
+	 	let checkboxes = document.getElementsByName("articleCheckbox");
+	 	//console.log(checkboxes);
+	  	checkboxes.forEach(cb => {
+	  		let cbe = cb as HTMLInputElement;
+  			//console.log("toggling checkbox", cbe);
+  			cbe.checked = v;
+	  	})
+	});
+  }
+
+  submitBulk() {
+  		let newStatus = this.dashboardForm.get('bulkStatus').value;
+  		console.log("submitting all checked for status change to ", newStatus);
+	 	let checkboxes = document.getElementsByName("articleCheckbox");
+	  	checkboxes.forEach(cb => {
+	  		let cbe = cb as HTMLInputElement;
+  			if (cbe.checked)  
+					// cbe.value contains the id of the checkbox (the is of the article)
+  					this.changeStatus(cbe.value as unknown as number, newStatus);
+	  	})
   }
   
-  
   ngOnInit() {
-  	console.log("aaaaaaaaaaaaaa");
+  	console.log("dashboard initialized");
 	this.ds.getArticles().subscribe((data: Article) => {
 		this.articles = data;
 		for(let x = 0; x < this.articles.size; x++) {
 			this.articleShow[x] = false;
 		}
-		
-		
   	});
-	
-	this.ds.getStatuses().subscribe((data: Status) => {
-		this.statuses = data;
-		console.log(this.statuses);
-	});
+  	this.dashboardForm.get('statusFilter').setValue("all");
   }
-  
   
   sortOrderDate: boolean = true;
   sortTitle: boolean = true;
   sortURL: boolean = true;
   sortStatus: boolean = true;
   sortTotal: boolean = true;
+  sortChecks: boolean = true;
+
   onClick(s:string)
   {
     if(s === "dateAdded")
@@ -203,6 +248,20 @@ export class DashboardComponent implements OnInit {
 			});
 		}
 		this.sortTotal = !this.sortTotal;
+	}
+	if(s === "sortChecks")
+    {
+		let checkboxes = document.getElementsByName("articleCheckbox");
+		console.log(checkboxes.length);
+		for(var ch; ch < checkboxes.length;ch++)
+		{
+			console.log(ch);
+		}
+	  	checkboxes.forEach(cb => {
+	  		let cbe = cb as HTMLInputElement;
+	  	})
+
+		this.sortChecks = !this.sortChecks;
 	}
   }
 

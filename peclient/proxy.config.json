@@ -1,6 +1,6 @@
-{  
+{
 	"/api/*": {
-		"target": "http://157.230.221.241:8080/demo-0.0.1-SNAPSHOT",    
+		"target": "http://localhost:8888/demo-0.0.1-SNAPSHOT",    
 		"secure": false,    
 		"pathRewrite": {"^/api" : ""}  
 	}
