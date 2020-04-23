@@ -18,24 +18,29 @@ private static org.slf4j.Logger logger = LoggerFactory.getLogger(BuzzService.cla
 	@Autowired ArticleService articleService;
 	
 	public JSONObject getBuzz(String articleUrl) {
-
         RestTemplate restTemplate = new RestTemplate();
         StringBuilder url = new StringBuilder("https://api.buzzsumo.com/search/articles.json?q=");
         url.append(articleUrl);
         url.append("&api_key=ZjO3Gfio4kfOaZ9K9iSdQcjoGsleT1Gf");
-        
         ResponseEntity<String> response = restTemplate.getForEntity(url.toString(),String.class);
+        if (response == null) {
+            JSONObject buzzEntry = new JSONObject().put("author_name", "none");
+            return buzzEntry;
+        }
         String res = response.getBody();
         logger.info(res);
         JSONObject j = new JSONObject(res);
-        JSONArray a = j.optJSONArray("results");
+        logger.info(j.toString());
         JSONObject buzzEntry = null;
         if (a != null && a.length() > 0) {
-        	buzzEntry = a.getJSONObject(0);
-        	logger.info("numWords: " + buzzEntry.opt("num_words").toString());
+            buzzEntry = a.getJSONObject(0);
+            logger.info("buzzEntry.toString():");
+            logger.info(buzzEntry.toString());
+            logger.info("numWords: " + buzzEntry.opt("num_words").toString());
             logger.info("totalShares: " + buzzEntry.opt("total_shares").toString());
+        } else {
+            buzzEntry = new JSONObject().put("author_name", "none");
         }
-        
         return buzzEntry;
 	}
 	

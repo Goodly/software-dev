@@ -78,6 +78,46 @@ public class ArticleService {
 		return newArticle;
 
 	}
+
+	public JSONArray updateMetrics() {
+		JSONArray list = new JSONArray();
+		List<ArticleEntity> buzzArticles = articleRepository.findByStatusCode("BUZZ");
+		List<ArticleEntity> userArticles = articleRepository.findByStatusCode("USER");
+		for (ArticleEntity article : buzzArticles) {
+			String title = article.getTitle();
+			if (title.equals("")) {
+				continue;
+			}
+			logger.info(title);
+			String url = article.getUrl();
+			JSONObject jArticle = buzzService.getBuzz(url);
+			logger.info(jArticle.toString());
+			if (jArticle.get("author_name").toString().equals("none")) {
+				continue;
+			}
+			ArticleEntity updatedArticle = updateArticleWithBuzz(jArticle, article);
+			Integer updatedAt = Integer.parseInt(new SimpleDateFormat("YYYYMMDD").format(new Date()));
+			updatedArticle.setUpdatedAt(updatedAt);
+			articleRepository.save(updatedArticle);
+			list.put(jArticle);
+		}
+
+		for (ArticleEntity article : userArticles) {
+			String url = article.getUrl();
+			JSONObject jArticle = buzzService.getBuzz(url);
+			if (jArticle.get("author_name").toString().equals("none")) {
+				continue;
+			}
+			ArticleEntity updatedArticle = updateArticleWithBuzz(jArticle, article);
+			Integer updatedAt = Integer.parseInt(new SimpleDateFormat("YYYYMMDD").format(new Date()));
+			updatedArticle.setUpdatedAt(updatedAt);
+			articleRepository.save(updatedArticle);
+			list.put(jArticle);
+		}
+
+		return list;
+
+	}
 	
 	public JSONArray processBatchArticle() {
 		logger.info("in articleService - processBatchArticle");
