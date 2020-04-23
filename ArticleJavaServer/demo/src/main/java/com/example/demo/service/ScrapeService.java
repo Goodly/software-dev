@@ -25,6 +25,8 @@ public class ScrapeService {
 			while ((l = reader.readLine()) != null) {
 				logger.info(l);
 				x.append(l);
+				x.append(System.lineSeparator());
+				//x.append(System.lineSeparator());
 			}
 		} catch (IOException e2) {
 //			 TODO Auto-generated catch block

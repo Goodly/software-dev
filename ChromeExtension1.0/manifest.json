@@ -1,29 +1,33 @@
 {
- "manifest_version": 2,
- "name": "Query Mini-Extension",
- "description": "This extension checks if Public Editor has the current page among it's scored articles.",
- "version": "1.0",
+	"manifest_version": 2,
+	"name": "Query Mini-Extension",
+	"description": "This extension checks if Public Editor has the current page among it's scored articles.",
+	"version": "1.0",
 
- "permissions": [
-   "tabs",
-   "http://*/",
-   "https://*/"
- ],
+	"permissions": [
+		"tabs",
+		"http://*/",
+		"https://*/"
+	],
 
-  "browser_action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-    	"16": "pe16.png",
-    	"32": "pe32.png",
-    	"48": "pe48.png",
-    	"128": "pe128.png"
-    	}
-    },
+	"background": {
+		"page": "background.html"
+	},
 
-  "icons": {
-    	"16": "pe16.png",
-    	"32": "pe32.png",
-    	"48": "pe48.png",
-    	"128": "pe128.png"
-    }
+	"browser_action": {
+		"default_popup": "popup.html",
+		"default_icon": {
+			"16": "images/pe16.png",
+			"32": "images/pe32.png",
+			"48": "images/pe48.png",
+			"128": "images/pe128.png"
+		}
+	},
+
+	"icons": {
+		"16": "images/pe16.png",
+		"32": "images/pe32.png",
+		"48": "images/pe48.png",
+		"128": "images/pe128.png"
+	}
 }

@@ -27,14 +27,36 @@ export class UtilitiesComponent implements OnInit {
   }
 
   sendAcceptedToS3() {
-  	this.us.doSend().subscribe(d => {
-  		this.utilitiesForm.get('sendResults').setValue(d);
-  	})
+  	this.us.doSend().subscribe(
+      res => {
+        console.log("response ", res)
+        //console.log(d);
+        this.utilitiesForm.get('sendResults').setValue("fffffffffff");
+      },
+      err => {
+        console.log("errrrrr", err);
+
+        console.log(err.ok);
+        console.log(err.status);
+        console.log(err.statusText);
+        console.log(err.error.text);
+        this.utilitiesForm.get('sendResults').setValue(err.error.text);
+      },
+      () => {
+        
+      });
   }
 
   getBuzzSumo() {
   	this.us.doBuzz().subscribe(d => {
-  		this.utilitiesForm.get('buzzResults').setValue(d);
+      console.log("qqqqqqqqqqqqqqqqqqqq");
+      console.log(d);
+  		let r: string = "";
+      for (let [key, value] of Object.entries(d)) {
+        r = r + `${key}: ${value}` + "\n";
+      }
+
+      this.utilitiesForm.get('buzzResults').setValue(r);
   	})
   }
 

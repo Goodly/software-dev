@@ -193,6 +193,10 @@
   .sort__asc {
     background: no-repeat url("/assets/images/sort_asc_brown.png") 12px 8px;
   }
+
+  .table3 tbody tr:nth-child(even) {
+    background: #6ec1ea;
+  }
 }
 
 @media (max-width: 768px) {

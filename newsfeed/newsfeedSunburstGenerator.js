@@ -15,9 +15,9 @@ A rough roadmap of the contents:
 //var dataFileName = "VisualizationData_1712.csv";
 var chartDiv = document.getElementById("chart");
 
-var width = 310,
-    height = 310,
-    radius = (Math.min(width, height) / 2);
+var width = 200,
+    height = 200,
+    radius = (Math.min(width, height) / 2) - 10;
 
 var formatNumber = d3.format(",d");
 
@@ -41,55 +41,42 @@ var nodeToPath = new Map();
 var arc = d3.arc()
     .startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x0))); })
     .endAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x1))); })
-    .innerRadius(function(d) { return 155 * d.y0; })
-    .outerRadius(function(d) { return 155 * d.y1; });
+    .innerRadius(function(d) { return 150 *d.y0; })
+    .outerRadius(function(d) { return 130 * d.y1; });
 
 
 //This variable creates the floating textbox on the hallmark
 var DIV;
-var PSEUDOBOX;
 
 var ROOT;
-var SVG;
 
-function hallmark(dataFileName) {
-
+function hallmark(dataFileName, id) {
 
 var svg = d3.select("body").append("svg")
+    .attr("articleID", id)
     .attr("width", width)
     .attr("height", height)
     .append('g')
     .attr("transform", "translate(" + (width / 2) + "," + (height / 2) + ")");
-SVG = svg;
-
-
+    
 var visualizationOn = false;
 
 var div = d3.select("body").append("div")
     .attr("class", "tooltip")
-    .style("opacity", 0);
-
-var pseudobox = d3.select("body").append("div")
-    .attr("class", "pseudobox")
     .style("opacity", 1);
-    
-DIV = div;
 
-PSEUDOBOX = pseudobox;
 //This code block takes the csv and creates the visualization.
 d3.csv(dataFileName, function(error, data) {
   if (error) throw error;
   delete data["columns"];
   data = addDummyData(data);
-  
   var root = convertToHierarchy(data);
-  condense(root);
+  
   ROOT = root;
   totalScore = 100 + scoreSum(root);
 
     root.sum(function(d) {
-    
-    return Math.abs(parseFloat(d.data.Points));
+    return Math.abs(parseInt(d.data.Points));
   });
 
 //Fill in the colors
@@ -100,7 +87,11 @@ svg.selectAll("path")
       .style("fill", function(d) {
         nodeToPath.set(d, this)
         return color(d.data.data["Credibility Indicator Category"]);
-      })
+      }).style("display", function(d) {
+        if (d.height == 0 || d.height == 2) {
+            return "none";
+        }  
+        });
 
 
 //Setting the center circle to the score
@@ -123,21 +114,51 @@ d3.selectAll("path").transition().each(function(d) {
         this.style.opacity = 0;
     }
 })
+    
+    
 
 //Mouse animations.
 svg.selectAll('path')
     .on('mouseover', function(d) {
-        if (d.height == 1) {
+        if (d.height == 2) {
+            return;
         }
-        drawVis(d, root, this, div);
+        //console.log(d);
+        d3.select(nodeToPath.get(d))
+      	            .transition()
+      	            .duration(300)
+      	            .attr('stroke-width',3)
+      	            .style("opacity", .8)
+        div.transition()
+            .duration(200)
+            .style("display", "block")
+            .style("opacity", .9);
+        div.html(d.data.data['Credibility Indicator Name'])
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY) + "px")
+            .style("width", "100px");
+
+    var pointsGained = scoreSum(d);
+    svg.selectAll(".center-text").style('display', 'none');
+    svg.append("text")
+        .attr("class", "center-text")
+        .attr("x", 0)
+        .attr("y", 13)
+        .style("font-size", 40)
+        .style("text-anchor", "middle")
+        .html((pointsGained));
+    div
+        .style("opacity", .7)
+        .style("left", (d3.event.pageX)+ "px")
+        .style("top", (d3.event.pageY - 28) + "px");
         visualizationOn = true;
+    
     })
     .on('mousemove', function(d) {
         if (visualizationOn) {
         div
-            .style("opacity", .7)
             .style("left", (d3.event.pageX)+ "px")
-            .style("top", (d3.event.pageY) + "px")
+            .style("top", (d3.event.pageY - 28) + "px")
         } else {
             div.transition()
                 .duration(10)
@@ -145,19 +166,35 @@ svg.selectAll('path')
         }
     })
     .on('mouseleave', function(d) {
-        resetVis(d);
-    }).on('click', function(d) {
-      scrolltoView(d)
-    })
-    .on('click', function(d) {
-        scrolltoView(d);
+        d3.select(nodeToPath.get(d))
+            .transition()
+            .duration(300)
+            .attr('stroke-width', 2)
+            .style("opacity", 1)
+        
+    
+    div.transition()
+            .delay(200)
+            .duration(600)
+            .style("opacity", 0);
+    var total = parseFloat(scoreSum(root));
+    svg.selectAll(".center-text").style("display", "none");
+    svg.append("text")
+        .attr("class", "center-text")
+        .attr("x", 0)
+        .attr("y", 13)
+        .style("font-size", 40)
+        .style("text-anchor", "middle")
+        .html((total + 100));
     })
     .style("fill", colorFinderSun);
+    visualizationOn = false;
 
 }); 
 d3.select(self.frameElement).style("height", height + "px");
 
 }
+
 
 /*** HELPER FUNCTIONS ***/
 
@@ -167,30 +204,20 @@ d3.select(self.frameElement).style("height", height + "px");
 */
 
 function colorFinderSun(d) {
+    if (d.height == 2) {
+        return d3.rgb(0, 0, 0);
+    }
     if (d.data.children) {
         if (d.data.data['Credibility Indicator Name'] == "Reasoning") {
                return d3.rgb(239, 117, 89);
             } else if (d.data.data['Credibility Indicator Name'] == "Evidence") {
                return d3.rgb(87, 193, 174);
             } else if (d.data.data['Credibility Indicator Name'] == "Probability") {
-                return d3.rgb(118, 188, 226);
+                return d3.rgb(118,188,226);
             } else {
                return d3.rgb(75, 95, 178);
             }
-        }   else {
-            if (d.data.size > 0) {
-                return d3.rgb(172,172,172);
-            }
-            if (d.parent.data.data['Credibility Indicator Name'] == "Reasoning") {
-                return d3.rgb(239, 117, 89);
-            } else if (d.parent.data.data['Credibility Indicator Name'] == "Evidence") {
-                return d3.rgb(87, 193, 174);
-            } else if (d.parent.data.data['Credibility Indicator Name'] == "Probability") {
-                return d3.rgb(118, 188, 226);
-            } else {
-                return d3.rgb(75, 95, 178);
-            }
-        }
+        }  
   }
 
 
@@ -200,7 +227,7 @@ function colorFinderSun(d) {
    @param d : the node in the data heirarchy
    @return : none
 */
-function resetVis(d) {
+function resetVis(d, graphObject) {
   // theresa start
     normalSun(d);
 // theresa end
@@ -230,15 +257,14 @@ function resetVis(d) {
             .duration(600)
             .style("opacity", 0);
     var total = parseFloat(scoreSum(d));
-    SVG.selectAll(".center-text").style('display', 'none');
-    SVG.append("text")
+    graphObject.selectAll(".center-text").style('display', 'none');
+    graphObject.append("text")
         .attr("class", "center-text")
         .attr("x", 0)
         .attr("y", 13)
         .style("font-size", 40)
         .style("text-anchor", "middle")
         .html((totalScore));
-    visualizationOn = false;
 }
 
 /*Function that draws the visualization based on what is being hovered over.
@@ -247,9 +273,9 @@ function resetVis(d) {
     @param me : the path that I am hovering over.
     @return : none
 */
-function drawVis(d, root, me, div) {
+function drawVis(d, root, me, graphObject) {
     if (d.height == 2) {
-        resetVis(d);
+        resetVis(d, graphObject);
         return;
     }
     d3.selectAll("path")
@@ -258,23 +284,6 @@ function drawVis(d, root, me, div) {
             return .5
             }
         );
-    if (d.children) {
-        var node;
-        for (node of d.children) {
-            var path = nodeToPath.get(node);
-            d3.select(path)
-                .transition()
-                .style("display", "block")
-                .style("opacity", 0.5)
-                .duration(100)
-        }
-    } else {
-        var child;
-        for (child of d.parent.children) {
-            var path = nodeToPath.get(child);
-            path.style.opacity = .5;
-        }
-    }
 
     d3.select(me)
         .transition()
@@ -293,13 +302,8 @@ function drawVis(d, root, me, div) {
             .style("opacity", 1)
 // theresa start
     } if (d.height == 0) {
-        //console.log(d);
         let textToHighlight = document.getElementsByName(d.data.data["Credibility Indicator ID"] + "-" + d.data.data.Start + "-" + d.data.data.End);
-        if (d.data.data.Start == -1) {
-          console.log("This fallacy does not have a highlight in the article body.");   
-        } else {
-            highlightSun(textToHighlight[0]);
-        }
+        highlightSun(textToHighlight[0]);
     }
     //theresa end
     else if (d.height == 2) {
@@ -307,15 +311,15 @@ function drawVis(d, root, me, div) {
     } else if (d.height == 1) {
         d3.select(nodeToPath.get(d.parent)).style('display', 'none');
     }
-    console.log(d.data.data['Credibility Indicator Name']);
-    div.transition()
+
+    DIV.transition()
             .duration(200)
             .style("opacity", .9);
-        div.html(d.data.data['Credibility Indicator Name'])
+        DIV.html(d.data.data['Credibility Indicator Name'])
             .style("left", (d3.event.pageX) + "px")
             .style("top", (d3.event.pageY) + "px")
             .style("width", function() {
-                if (d.data.data['Credibility Indicator Name'].length < 18) {
+                if (d.data.data['Credibility Indicator Name'].length < 10) {
                     return "90px";
                 } else {
                     return "180px";
@@ -323,8 +327,8 @@ function drawVis(d, root, me, div) {
             })
 
     var pointsGained = scoreSum(d);
-    SVG.selectAll(".center-text").style('display', 'none');
-    SVG.append("text")
+    graphObject.selectAll(".center-text").style('display', 'none');
+    graphObject.append("text")
         .attr("class", "center-text")
         .attr("x", 0)
         .attr("y", 13)
@@ -354,7 +358,7 @@ function scoreSum(d) {
             sum += parseFloat(scoreSum(d.children[i]));
         }
         if (d.height == 2) {
-            articleScore = parseFloat(sum);
+            articleScore = parseInt(sum);
             return Math.round(articleScore);
         }
         return Math.round(sum);
@@ -364,9 +368,11 @@ function scoreSum(d) {
 function scrolltoView(x) {
     if (x.height == 0) {
         let textToView = document.getElementsByName(x.data.data["Credibility Indicator ID"] + '-' + x.data.data.Start + '-' + x.data.data.End);
-        textToView[0].scrollIntoView({behavior: "smooth", block:"center"});
+        textToView[0].scrollIntoView({behavior: "smooth"});
     }
 }
+
+
 function highlightSun(x) {
   // console.log(x.toElement);
   //console.log(x.toElement.style);

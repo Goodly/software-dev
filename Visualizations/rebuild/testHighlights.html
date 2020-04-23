@@ -21,8 +21,11 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="createHighlights.js"></script>
+    <script type="text/javascript" src="sunburstGenerator.js"></script>
     <script type="text/javascript" src="FlexArray.js"></script>
     <script type="text/javascript" src="colorFinder.js"></script>
+    <script src="dataConverter.js"></script>
+
 </head>
 
 <!-- Begin body -->
@@ -52,7 +55,6 @@
 
         <!-- Grid start -->
         <div class="homepage-section">
-
             <div class="categories" id="categories">
                 <h2 class="dropTitle">Categories</h2>
                 <div class="extra-small-space"></div>
@@ -63,7 +65,9 @@
             <div class="text article">
                 <p id="headerArticle"></p>
                 <p class="p-article" id="textArticle">
-                  TEXT
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis risus sed vulputate odio ut enim. Et tortor consequat id porta nibh venenatis cras sed. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing. Risus sed vulputate odio ut enim blandit. Nunc eget lorem dolor sed viverra ipsum nunc. Sit amet mauris commodo quis imperdiet massa. Leo vel fringilla est ullamcorper eget. Amet consectetur adipiscing elit duis tristique. Elementum nisi quis eleifend quam adipiscing. Sed sed risus pretium quam vulputate dignissim. Magnis dis parturient montes nascetur ridiculus. Et malesuada fames ac turpis. Ante metus dictum at tempor commodo ullamcorper a lacus.
+
+Arcu bibendum at varius vel pharetra. Arcu cursus vitae congue mauris rhoncus. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim. Vestibulum lectus mauris ultrices eros in. Vestibulum morbi blandit cursus risus. Eu nisl nunc mi ipsum. Purus gravida quis blandit turpis cursus. Consectetur adipiscing elit duis tristique sollicitudin nibh. Et egestas quis ipsum suspendisse ultrices. Lobortis mattis aliquam faucibus purus in. Metus dictum at tempor commodo ullamcorper a lacus vestibulum. Ornare massa eget egestas purus. Euismod in pellentesque massa placerat duis ultricies lacus. Porta nibh venenatis cras sed felis eget. Scelerisque purus semper eget duis at tellus at urna. Arcu vitae elementum curabitur vitae. Ipsum consequat nisl vel pretium lectus quam. Adipiscing vitae proin sagittis nisl rhoncus. Et netus et malesuada fames ac turpis egestas maecenas pharetra.
                 </p>
             </div>
 
@@ -74,11 +78,22 @@
                 <script type="text/javascript">
                   scoreArticle("VisualizationData_17120.csv");
                 </script>
+                <script type = 'text/javascript'>
+                hallmark("VisualizationData_17120.csv");
+                </script>
                 <div class="sunburst">
-                    <svg id="chart" viewBox="0 0 500 500"  preserveAspectRatio="xMidYMid meet">
-                    </svg>
+                    <svg id = "chart" viewBox="0 0 500 500"  preserveAspectRatio="xMidYMid meet"></svg>
                 </div>
             </div>
+            <style>
+                .sunburst {
+                    position: -webkit-sticky;
+                    position: sticky;
+                    top: 10%;
+                    left: 85%;
+                }
+
+            </style>
             <!-- Cred score end -->
 
         </div>

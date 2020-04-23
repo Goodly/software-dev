@@ -15,8 +15,11 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="newsfeed.js" charset="utf-8"></script>
     <script src="ArticleData.js" charset="utf-8"></script>
-    <script src="sunburstCode.js" charset="utf-8"></script>
+    <script src="newsfeedSunburstGenerator.js" charset="utf-8"></script>
+    <script src="dataconverter.js" charset="utf-8"></script>
+    <script src="moveHallmark.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 
 </head>
 
@@ -49,34 +52,48 @@
             <div class="col-2">
             </div>
             <div class="col-8">
-                <div class="searchbar">
+                <div class="searchbar"  id = "search">
                     <form class="example">
-                        <input id = "searchtext" type="text" placeholder="Search.." name="search">
-                        <button type="button" onclick="generateList()">
+                        <input id = "searchtext" type="text" placeholder="Search for an article ..." name="search">
+                        <button id = "searchbutton"type="button" onclick="generateAndMove()">
                             Search
                         </button>
                     </form>
                     <br>
 
                     Filter By:
-                    <select id = "sortByList">
+                    <select class = "sort" id = "sortByList">
                         <option value="title">Title</option>
                         <option value="date">Date</option>
                         <option value="credscore">Credibility Score</option>
                     </select>
 
-                    Show:
-                    <select id = "showLimit">
-                        <option value=5>5</option>
-                        <option value=10>10</option>
-                        <option value=15>15</option>
-                    </select>
 
                     Order by:
-                    <select id = "order">
-                        <option value="descending">Descending</option>
-                        <option value="ascending">Ascending</option>
+                    <select class = "sort" id = "order">
+                        <option value="Alpha">A-Z</option>
+                        <option value="revAlpha">Z-A</option>
                     </select>
+
+                    <script>
+                    $(document).ready(function () {
+                        $("#sortByList").change(function () { // reloading list based on sort option
+                            var val = $(this).val();
+                            if (val == "title") {
+                                $("#order").html("<option value='Alpha'>A-Z</option><option value='revAlpha'>Z-A</option>");
+                            } else if (val == "date") {
+                                $("#order").html("<option value='recent'>Recent</option><option value='older'>Oldest</option>");
+                            } else if (val == "credscore") {
+                                $("#order").html("<option value='low'>Low to High</option><option value='high'>High to Low</option>");
+                            }
+                            generateAndMove();
+                        });
+                        $("#order").change(function() { // reloading list based on sort-order option
+                          generateAndMove();
+                        });
+                    });
+                        </script>
+
                 </div>
             </div>
             <div class="col-2">
@@ -88,19 +105,29 @@
         <div id="articleList" class="container section"></div>
 
         <script>
-            console.log("YO");
+
             function doFunctions() {
                 readVisData();
                 setTimeout(function () {
-                    generateList();
+                    generateAndMove();
                 }, 1000);
             }
             doFunctions();
+
         </script>
 
         <!-- Grid end -->
 
-        <div class="small-space"></div>
+        <div class="small-space">
+          <div id = "showBox">
+          Show:
+          <select class = "sort" id = "showLimit">
+              <option value=5>5</option>
+              <option value=10>10</option>
+              <option value=15>15</option>
+          </select>
+        </div>
+        </div>
 
         <!-- Footer -->
 

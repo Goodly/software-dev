@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8"/>
@@ -20,7 +21,12 @@
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="highlights.js"></script>
+    <script type="text/javascript" src="createHighlights.js"></script>
+    <script type="text/javascript" src="FlexArray.js"></script>
+    <script type="text/javascript" src="colorFinder.js"></script>
+
+    <script src="dataConverter.js"></script>
+
 </head>
 
 <!-- Begin body -->
@@ -50,7 +56,6 @@
 
         <!-- Grid start -->
         <div class="homepage-section">
-
             <div class="categories" id="categories">
                 <h2 class="dropTitle">Categories</h2>
                 <div class="extra-small-space"></div>
@@ -60,35 +65,32 @@
             <!-- Content: Features 1, 2, 3-->
             <div class="text article">
                 <p id="headerArticle"></p>
-                <p class="p-article" id="textArticle">Urna nunc id cursus metus aliquam eleifend. Quis risus sed vulputate odio ut. Lectus magna fringilla urna porttitor rhoncus dolor purus non enim. Quam id leo in vitae. Pellentesque id nibh tortor id aliquet lectus proin. Odio facilisis mauris sit amet massa vitae tortor condimentum lacinia. Tellus rutrum tellus pellentesque eu tincidunt tortor. Consectetur purus ut faucibus pulvinar elementum integer enim neque volutpat. In tellus integer feugiat scelerisque varius. Id cursus metus aliquam eleifend. Et malesuada fames ac turpis. Purus faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Orci phasellus egestas tellus rutrum. Nibh mauris cursus mattis molestie a iaculis. Et egestas quis ipsum suspendisse ultrices gravida. Tellus in metus vulputate eu scelerisque felis imperdiet proin fermentum. Nulla porttitor massa id neque aliquam. Consequat interdum varius sit amet mattis vulputate enim.
-
-Non curabitur gravida arcu ac tortor dignissim. Convallis a cras semper auctor. Ut tortor pretium viverra suspendisse. Lorem dolor sed viverra ipsum nunc aliquet. Consectetur purus ut faucibus pulvinar elementum integer. Purus sit amet luctus venenatis lectus magna fringilla urna porttitor. Urna nunc id cursus metus aliquam eleifend mi in. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus. Ut morbi tincidunt augue interdum velit euismod in pellentesque. Vitae tortor condimentum lacinia quis.
-
-Amet risus nullam eget felis eget nunc. Elit eget gravida cum sociis natoque penatibus. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Diam maecenas ultricies mi eget. Amet mattis vulputate enim nulla. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Tristique magna sit amet purus gravida. Adipiscing elit duis tristique sollicitudin nibh. Amet est placerat in egestas erat imperdiet. Integer vitae justo eget magna fermentum iaculis. Proin nibh nisl condimentum id venenatis a condimentum vitae sapien. Nibh venenatis cras sed felis eget velit. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Blandit massa enim nec dui nunc mattis. Sodales neque sodales ut etiam sit. Etiam tempor orci eu lobortis elementum nibh tellus. Ut lectus arcu bibendum at varius vel pharetra.
-Mattis nunc sed blandit libero volutpat sed. Nisl suscipit adipiscing bibendum est. Odio facilisis mauris sit amet massa. Sagittis orci a scelerisque purus. Justo nec ultrices dui sapien eget mi proin sed libero. At auctor urna nunc id cursus metus aliquam. Egestas sed tempus urna et. Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Donec massa sapien faucibus et molestie ac. Laoreet suspendisse interdum consectetur libero id faucibus nisl. Non tellus orci ac auctor augue mauris. Urna et pharetra pharetra massa massa.
-
-Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Sit amet nisl purus in mollis. Pellentesque sit amet porttitor eget dolor morbi non arcu risus. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend. Facilisis gravida neque convallis a cras semper. Et odio pellentesque diam volutpat. Eget sit amet tellus cras adipiscing enim eu. Sit amet mauris commodo quis imperdiet. Erat imperdiet sed euismod nisi porta lorem mollis aliquam. Adipiscing elit ut aliquam purus sit. Ornare massa eget egestas purus viverra. Laoreet id donec ultrices tincidunt arcu non sodales. Et malesuada fames ac turpis egestas sed. Risus sed vulputate odio ut enim. Nec dui nunc mattis enim. Tortor condimentum lacinia quis vel eros.
-
-Leo duis ut diam quam nulla porttitor. Sollicitudin tempor id eu nisl nunc. Facilisis magna etiam tempor orci. Tortor at risus viverra adipiscing at in tellus integer. Sed id semper risus in. Dui faucibus in ornare quam viverra orci sagittis eu. Quis enim lobortis scelerisque fermentum dui faucibus in ornare quam. Quam adipiscing vitae proin sagittis nisl rhoncus mattis. Volutpat diam ut venenatis tellus in metus. Proin nibh nisl condimentum id. Turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat. Egestas congue quisque egestas diam in arcu cursus euismod. Dolor sit amet consectetur adipiscing. Tortor consequat id porta nibh venenatis cras sed felis eget. Aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat. Volutpat ac tincidunt vitae semper quis lectus nulla at. Suspendisse ultrices gravida dictum fusce.
-
-Consectetur lorem donec massa sapien faucibus et molestie. Risus nec feugiat in fermentum posuere urna nec tincidunt. Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis. Vel pharetra vel turpis nunc eget lorem. Id volutpat lacus laoreet non curabitur gravida arcu ac tortor. Massa placerat duis ultricies lacus sed turpis tincidunt id. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Vulputate sapien nec sagittis aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Vestibulum sed arcu non odio euismod lacinia. Netus et malesuada fames ac turpis.
-
-Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum. Consequat id porta nibh venenatis cras sed. Egestas purus viverra accumsan in nisl nisi scelerisque. Elit sed vulputate mi sit. Euismod nisi porta lorem mollis aliquam. Vel facilisis volutpat est velit egestas dui. Condimentum id venenatis a condimentum vitae. Proin nibh nisl condimentum id venenatis a. Ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Sagittis eu volutpat odio facilisis. Suscipit adipiscing bibendum est ultricies integer. Urna duis convallis convallis tellus id interdum velit laoreet. Netus et malesuada fames ac. Faucibus turpis in eu mi bibendum neque egestas. Interdum varius sit amet mattis vulputate enim nulla. Massa placerat duis ultricies lacus sed turpis tincidunt. Egestas erat imperdiet sed euismod nisi porta lorem. Tellus molestie nunc non blandit massa enim nec dui nunc. Praesent semper feugiat nibh sed pulvinar proin. Mauris a diam maecenas sed enim ut sem.
-</p>
+                <p class="p-article" id="textArticle">
+                  TEXT
+                </p>
             </div>
 
             <!-- Article end -->
 
             <!-- Cred score begin -->
             <div class="cred-score-container">
-                <script type="text/javascript">scoreArticle("VisualizationData_17120.csv");
-                //f7eb2314bb13aae4542caf7ee10c336890c3e911c50093d575b1849e107abfb7
+                <script type="text/javascript">
+                  scoreArticle("VisualizationData_17120.csv");
                 </script>
+                <script type='application/javascript' src = 'sunburstGenerator.js'></script>
                 <div class="sunburst">
-                    <svg id="chart" viewBox="0 0 500 500"  preserveAspectRatio="xMidYMid meet">
-                    </svg>
+                    <svg id = "chart" viewBox="0 0 500 500"  preserveAspectRatio="xMidYMid meet"></svg>
                 </div>
             </div>
+            <style>
+                .sunburst {
+                    position: -webkit-sticky;
+                    position: sticky;
+                    top: 10%;
+                    left: 85%;
+                }
+
+            </style>
             <!-- Cred score end -->
 
         </div>

@@ -12,6 +12,7 @@ import { SignupComponent } from './signup/signup.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MenuComponent } from './menu/menu.component';
 import { UtilitiesComponent } from './utilities/utilities.component';
+import { ReplaceLineBreaksPipe } from './replace-line-breaks.pipe';
 
 
 const appRoutes: Routes = [
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     SignupComponent,
     PageNotFoundComponent,
     MenuComponent,
-    UtilitiesComponent
+    UtilitiesComponent,
+    ReplaceLineBreaksPipe
   ],
   imports: [
     BrowserModule,

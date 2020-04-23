@@ -38,7 +38,7 @@
 		<button class="button bulksubmit" (click)="submitBulk()">Submit Bulk</button>
 	</div>
 
-	<div class="section">
+	<div class="section" style="display:inline; max-width: 80%">
 	 <table class="table3" border="1px solid">
 		<thead>
 			<tr>
@@ -69,24 +69,24 @@
 				<th>Total Shares
 					<button aria-label="Sort Object Total Shares column descending" class="sorting" (click) = "onClick('totalShares')"></button>
 				</th>
+				<th> Text</th>
+
 			</tr>
 		</thead>
 	    <tbody>
 	    	<ng-container *ngFor="let a of articles">
 		    	<tr>
-		    		<td class="ten-percent">
+		    		<td class="five-percent">
 		    			<input name="articleCheckbox" type="checkbox" style="vertical-align: middle;" value="a.id">
 		    		</td>
-		    		<td class="ten-percent">{{a.publishDate | date: 'shortDate'}}</td>
-		    		<td class="fifteen-percent">
+		    		<td class="five-percent">{{a.publishDate | date: 'shortDate'}}</td>
+		    		<td class="five-percent">
 		    			{{a.articleTitle}}
 		    			<button type="button" (click)="toggle(a.id)">details</button>
 		    		</td>
-		    		<td class="ten-percent">{{a.url}}</td>
-		    		<td class="ten-percent">{{a.statuses[0].statusCode}}</td>
-		    		<td class="ten-percent">
-		    			<!-- change per filter dropdown and what we discussed today -->
-		    			<!-- ps - didn't use the onValueChange subscribe 'cause it's a repeated element - simpler to call a function with the id -->
+		    		<td class="five-percent">{{a.url}}</td>
+		    		<td class="five-percent">{{a.statuses[0].statusCode}}</td>
+		    		<td class="five-percent">
 		    			<select (change)="changeStatus(a.id, $event)">
 							<option [value]="a.statuses[0].statusCode">
 								{{a.statuses[0].statusCode}} - {{a.statuses[0].statusText}}
@@ -98,7 +98,11 @@
 							</ng-container>
 						</select>
 		    		</td>
-						<td class="ten-percent"> {{a.totalShares}}</td>
+					<td class="five-percent"> {{a.totalShares}}</td>
+					<td class="fifty-percent" >
+						<div [innerHTML]="a.articleText | replaceLineBreaks" style="overflow: scroll; max-height: 300px;">
+						</div>
+					</td>
 		    	</tr>
 		    	<tr>
 		    		<td *ngIf="articleShow[a.id]" style="overflow:hidden" colspan="5">

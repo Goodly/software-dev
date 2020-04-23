@@ -86,7 +86,35 @@
 		  <artifactId>jarchivelib</artifactId>
 		  <version>0.7.1</version>
 		</dependency>
-				
+		<dependency>
+    		<groupId>io.jsonwebtoken</groupId>
+    		<artifactId>jjwt-api</artifactId>
+		    <version>0.11.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt-impl</artifactId>
+		    <version>0.11.1</version>
+		    <scope>runtime</scope>
+		</dependency>
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+		    <version>0.11.1</version>
+		    <scope>runtime</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt -->
+		<dependency>
+		    <groupId>com.nimbusds</groupId>
+		    <artifactId>nimbus-jose-jwt</artifactId>
+		    <version>8.15</version>
+		</dependency>
+
+		  <dependency>
+		    <groupId>org.bitbucket.b_c</groupId>
+		    <artifactId>jose4j</artifactId>
+		    <version>0.7.0</version>
+		  </dependency>				
 	</dependencies>
 
 	<dependencyManagement>

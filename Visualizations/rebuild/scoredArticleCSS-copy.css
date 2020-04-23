@@ -57,12 +57,25 @@ div.tooltip {
         width: 80px;
         height: 45px;
         padding: 10px;
-        font: 14px sans-serif;
         font-weight: bold;
         background: lightgrey;
         border: 0px;
         border-radius: 8px;
         pointer-events: none;
+}
+
+div.pseudobox {
+    text-align: center;
+    position: fixed;
+    position: -webkit-sticky;
+    width: 80px;
+    height: 45px;
+    padding: 10px;
+    font-weight: bold;
+    background: lightgrey;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
 }
 
 .highlighter {
@@ -95,6 +108,7 @@ div.tooltip {
 
 }
 
+/*
 .svg-container {
     display: inline-block;
     position: absolute;
@@ -103,14 +117,28 @@ div.tooltip {
     vertical-align: top;
     overflow: hidden;
 }
+*/
 
 .svg-content {
     display: inline-block;
     position: absolute;
+    
     top: 0;
     left: 0;
+}
+
+svg {
+    position: fixed;
+    position: -webkit-sticky;
+    font-weight: bold;
+    top: 10%;
+    left: 80%;
+    stroke: #fff;
 
 }
+
+
+
 #header {
   height: 50px;
   background-color: rgb(83, 83, 89);
@@ -139,10 +167,9 @@ div.tooltip {
 }
 
 .sunburst {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 10%;
-  left: 80%;
+  position: fixed;
+    bottom: 40;
+    right: 80;
 }
 
 .dropTitle {

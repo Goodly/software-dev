@@ -1,0 +1,12 @@
+version: '3.5'
+
+volumes:
+  funnel_static_dist:
+
+services:
+  funnel_static_volume:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - funnel_static_dist:/var/www/staticfiles

@@ -95,6 +95,7 @@ div.tooltip {
 
 }
 
+/*
 .svg-container {
     display: inline-block;
     position: absolute;
@@ -103,14 +104,25 @@ div.tooltip {
     vertical-align: top;
     overflow: hidden;
 }
+*/
 
 .svg-content {
     display: inline-block;
     position: absolute;
     top: 0;
     left: 0;
+}
+
+svg {
+    position: absolute;
+    top: 10%;
+    left: 80%;
+    stroke: #fff;
 
 }
+
+
+
 #header {
   height: 50px;
   background-color: rgb(83, 83, 89);
@@ -139,10 +151,9 @@ div.tooltip {
 }
 
 .sunburst {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 10%;
-  left: 80%;
+  position: fixed;
+    bottom: 40;
+    right: 80;
 }
 
 .dropTitle {
@@ -788,7 +799,6 @@ p.p-annotate {
 
 /* katie come back
 This is mobile
-
 */
 
   p {
@@ -935,7 +945,6 @@ This is mobile
     display: block;
     padding-right: 25vw;
   }
-
   #about-image-mobile {
     padding-right: none;
     display: none;

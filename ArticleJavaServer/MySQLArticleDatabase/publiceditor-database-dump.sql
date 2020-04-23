@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: publiceditor
 -- ------------------------------------------------------
--- Server version	8.0.18
+-- Server version 8.0.18
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -64,6 +64,7 @@ CREATE TABLE `article` (
   `vis_data` mediumtext,
   `tagworks_id` int(11) DEFAULT NULL,
   `article_hash` char(64) DEFAULT NULL,
+  `filename` text NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -75,7 +76,212 @@ CREATE TABLE `article` (
 
 LOCK TABLES `article` WRITE;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
-INSERT INTO `article` VALUES (1,'the meaning of life','anonymous','www.life.com/meaning.htm','2012-01-01 15:00:00','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','ggggg','the meaning of life',NULL,NULL,234234234,234234234,234234234,3333,'',444,33,3333,44,0.55,444,55,666,777,44,44,44,44,44,44,NULL,NULL,NULL),(2,'the meaning of happiness','buddha','www.happinesstimes.com/happiness-meanng.html','2012-02-02 15:00:00','Scelerisque varius morbi enim nunc faucibus a. Laoreet id donec ultrices tincidunt arcu non sodales neque. Mi quis hendrerit dolor magna. Sapien eget mi proin sed libero enim. Nibh tortor id aliquet lectus. Nulla facilisi morbi tempus iaculis urna id volutpat lacus. Ipsum a arcu cursus vitae congue mauris rhoncus. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis. Ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Faucibus ornare suspendisse sed nisi lacus. Mattis enim ut tellus elementum sagittis vitae et.',NULL,'the meaning of happiness',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'','','https://www.google.com','2019-10-27 16:51:32','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non nisi. Eu mi bibendum neque egestas congue quisque. Tortor at risus viverra adipiscing at in tellus integer feugiat. Vel turpis nunc eget lorem dolor. Massa massa ultricies mi quis hendrerit dolor magna eget est. Faucibus et molestie ac feugiat sed lectus vestibulum. Massa tincidunt dui ut ornare lectus sit amet. Vel eros donec ac odio tempor. Nec feugiat nisl pretium fusce id velit. Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque.',NULL,'hijklmnop hijklmnop',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'','','www.washingtonpost.com/politics/as-warren-and-buttigieg-rise-the-democratic-presidential-race-is-competitive-and-fluid-a-washington-post-abc-news-poll-finds/2019/11/02/4b7aca3c-fccd-11e9-8906-ab6b60de9124_story.html','2019-11-11 04:28:28','With peak winds of 185 mph, Hurricane Dorian became the strongest storm on record to strike the Bahamas Sunday and among the top few most intense ever observed in the Atlantic Ocean. The Category 5 storm next threatens to bring hurricane force winds, coastal flooding and heavy rain to the east coast of Florida and Southeast U.S.\r\n\r\nDorian’s winds had only eased modestly, down to 180 mph at 11 p.m. Sunday, still generating “catastrophic conditions” in the northern Bahamas. The National Hurricane Center stated the storm made landfall on Grand Bahama Island at 11 p.m. after slamming into Great Abaco earlier in the day.\r\n\r\n“Dorian remains an incredibly powerful hurricane,” the Hurricane Center wrote.\r\n\r\nAs the storm closes in on Florida’s east coast, the National Hurricane Center has posted hurricane and storm surge warnings for some areas. The storm surge is the storm-driven rise in water above normally dry land at the coast:\r\n\r\nThe hurricane warning stretches from Jupiter Inlet (just north of West Palm Beach) to the Volusia/Brevard county line (just north of Titusville).\r\n\r\nThe storm surge warning spans from near West Palm Beach to Titusville. In some areas the surge could reach 4 to 7 feet, the Hurricane Center projects.\r\n\r\nThese warnings are focused on the period from Monday night through early Wednesday. Tropical storm-force winds could begin in south Florida as soon as Monday afternoon and continue into Tuesday and Wednesday, perhaps reaching hurricane-force Tuesday depending how close to the coast Dorian tracks.\r\n\r\nIn addition to the wind and surge, about to three to six inches of rain is projected along Florida’s east coast.\r\n\r\nAlthough the center of Dorian, containing its extreme Category 5 winds, may remain offshore Florida, its forecast track is so close to the coast that it necessitated warnings. “A small deviation to the left of the track could bring the intense core of the hurricane its dangerous winds closer to or onto the Florida coast,” the Hurricane Center wrote.\r\n\r\n\r\n\r\nHurricane Dorian on Sunday morning. (NOAA)\r\n\r\nBeyond Florida, Dorian will take aim at coastal Georgia and the Carolinas Wednesday through Friday. “There is an increasing likelihood of strong winds and dangerous storm surge along the coasts of Georgia, South Carolina, North Carolina later this week,” the Hurricane Center wrote. “Residents in these areas should continue to monitor the progress of Dorian and listen to advice given by local emergency officials.”\r\n\r\nEffects on the Bahamas\r\n\r\nWhile Florida and areas farther north await effects from the monster storm, a “catastrophic” scenario is unfolding in the northwestern Bahamas, where the storm’s eyewall, the ring of destructive winds around the center, struck Sunday. On Great Abaco, which suffered a direct hit, the Hurricane Center warned of a “life-threatening situation” into Sunday evening.\r\n\r\n[‘Pray for us’: Dorian snapping trees, tearing off roofs in the Bahamas]\r\n\r\nWatch #MarshHarbour go through the eye of #Dorian. Took 3 hours from western eyewall exit to now entering Southeast eyewall. #Bahamas pic.twitter.com/DcVKrA7SrB — Bill Karins (@BillKarins) September 1, 2019\r\n\r\nOn Sunday night, as the storm’s eyewall rammed into Grand Bahama Island, the storm was predicted to unleash wind gusts over 200 mph, along with storm surge flooding of 18 to 23 feet above normal tide levels. “These hazards will cause extreme destruction in the affected areas and will continue for several hours,” the Hurricane Center stated.\r\n\r\nThe eye of Hurricane Dorian is slowly approaching the eastern end of Grand Bahama Island Sunday evening as viewed from the Miami, Florida radar. pic.twitter.com/SNiOSAotoN — NWS Eastern Region (@NWSEastern) September 2, 2019\r\n\r\nThe storm’s core of devastating wind and torrential rain, totaling up to 30 inches, may sit for at least 24 hours over the northern Bahamas as steering currents in the atmosphere collapse, causing Dorian to meander slowly, if not stall outright, for a time.\r\n\r\nIn short, this is a storm that, depending on its exact track over the northern Bahamas, particularly Grand Bahama and the Abaco Islands, could reshape these locations for decades.\r\n\r\nAs of 11 p.m., the storm was 55 miles east of Freeport on Grand Bahama Island and was crawling west at 5 mph. The storm’s peak winds were 180 mph, and Dorian has maintained Category 4 and now Category 5 intensity for an unusually long period.\r\n\r\nStorms this powerful typically tend to undergo cycles that weaken their high-end winds for a time, but Dorian has somehow avoided this dynamic.\r\n\r\nThe threat to Florida and the Southeast\r\n\r\nAfter models run early Saturday shifted the storm track offshore Florida, some that were run late Saturday into Sunday shifted it back closer to the Florida coast.\r\n\r\nDorian has grown larger in size, which may have implications for the Florida forecast. Hurricane-force winds now extend outward up to 45 miles from the center and tropical-storm-force winds extend outward up to 140 miles (220 km). The latest forecast from the Hurricane Center calls for Dorian to remain a Category 5 storm until Monday night before slowly weakening, but remaining a formidable hurricane, as it moves close to Florida and northward to the Carolinas.\r\n\r\nBecause the storm is predicted to be a slow mover, effects from wind, rain and storm surge could be prolonged, lingering through the middle of next week on Florida’s east coast.\r\n\r\n[Incredible views of Category 5 Hurricane Dorian near peak intensity]\r\n\r\nIrrespective of the storm’s ultimate course near Florida’s east coast to the North Carolina Outer Banks — or even inland — significant coastal flooding is likely because of the force of Dorian’s winds and astronomically high or king tides.\r\n\r\nThe risk of a direct strike on Florida is less than it was a few days ago but has not been eliminated. Much depends on the strength of the high-pressure area that has been pushing Dorian west toward the northern Bahamas and Florida. The high acts as a blocking mechanism to prevent the storm from turning north out to sea, at least until the high diminishes in strength.\r\n\r\nMost models show steering currents collapsing as Dorian nears Florida because of a weakening of the high, before it gets scooped up by a dip in the jet stream approaching the East Coast and starts turning north.\r\n\r\n“The timing of the northwest or north turn is very critical in determining how close Dorian will get to the Florida peninsula on Tuesday and Wednesday,” the Hurricane Center wrote.\r\n\r\nSome models don’t turn the storm soon enough, continuing to track the storm close enough for damaging impacts in parts of the state. One trend in the models overnight on Saturday and Sunday afternoon has been to show a slightly stronger high that brings the center of Dorian farther west, closer to the Florida coast and the Southeast coast, before making the northward turn.\r\n\r\n\r\n\r\nGroup of simulations from American (blue) and European (red) computer models from Sunday afternoon for Tropical Storm Dorian. Each color strand represents a different model simulation with slightly altered input data. Note that the strands are clustered together where the forecast track is most confident but diverge where the course of the storm is less certain. The bold red line is the average of all of the European model simulations, while the bold blue one is the average of all the American model simulations. (StormVistaWxModels.com)\r\n\r\nIn a statement, the National Weather Service forecast office in Melbourne, Florida, said “The situation has become more serious, especially for the east central Florida coastal counties,” based on recent forecast guidance.\r\n\r\n\r\n\r\nThreat of different hazards in Florida from Dorian. (National Weather Service)\r\n\r\nThe latest storm surge forecast for Florida shows that if the peak surge occurs at the time of high tide, the area from the Volusia and Brevard County Line to Jupiter Inlet could see 4 to 7 feet of water above ground, while the region from Deerfield Beach to Jupiter Inlet experiences 2 to 4 feet.\r\n\r\nFarther north into coastal Georgia and the Carolinas, the forecast is also a nail-biter. Just small differences in where the storm starts to turn north and, eventually, northeast and the shape of the turn will determine where and whether Dorian makes landfall.\r\n\r\nScenarios involving a direct hit, a graze and a near miss appear equally likely based on available forecasts. As the Hurricane Center writes: “Residents in these areas should continue to monitor the progress of Dorian.”\r\n\r\nThe shape of the coastline from northern Florida through the Carolinas means there is a risk of significant storm-surge flooding there even if the storm’s center remains just offshore.\r\n\r\nHowever, unlike with notorious recent storms such as Matthew and Florence, it’s unlikely that the Carolinas will experience devastating rainfall amounts from Hurricane Dorian, as the storm will pick up forward speed on nearing the Carolinas.\r\n\r\n1 of 38 Full Screen Autoplay Close Skip Ad × Scenes from the path of Hurricane Dorian View Photos Dorian began brewing into one of the strongest hurricanes on record, prompting panicked preparations in Florida and north through the Carolinas. But it was the Bahamas that bore the brunt of the then Category 5 storm’s fury. Caption Dorian began brewing into one of the strongest hurricanes on record, prompting panicked preparations in Florida and north through the Carolinas. But it was the Bahamas that bore the brunt of the then Category 5 storm’s fury. Carolyn Van Houten/The Washington Post Buy Photo Wait 1 second to continue.\r\n\r\nThe storm in historical context\r\n\r\nDorian is tied for the second-strongest storm (as judged by its maximum sustained winds) ever recorded in the Atlantic Ocean, behind Hurricane Allen of 1980, and, after striking the northern Bahamas, tied with the 1935 Labor Day Hurricane for the title of the strongest Atlantic hurricane at landfall.\r\n\r\n[Hurricane Dorian has smashed all sorts of intensity records in the Atlantic Ocean]\r\n\r\nDorian is only the second Category 5 hurricane to make landfall in the Bahamas since 1983, according to Phil Klotzbach of Colorado State University. The only other is Hurricane Andrew in 1992. The international hurricane database goes back continuously only to 1983.\r\n\r\nThe storm’s peak sustained winds rank as the strongest so far north in the Atlantic Ocean east of Florida on record. Its pressure, which bottomed out at 910 millibars, is significantly lower than Hurricane Andrew’s when it made landfall in south Florida in 1992 (the lower the pressure, the stronger the storm).\r\n\r\nFour straight years.\r\n\r\n\r\n\r\nFive category five hurricanes.\r\n\r\n\r\n\r\nFive incredible eyes. pic.twitter.com/LeD1nnbRZb — Dakota Smith (@weatherdak) September 1, 2019\r\n\r\nWith Dorian attaining Category 5 strength, this is the first time since the start of the satellite era (in the 1960s) that Category 5 storms have developed in the tropical Atlantic in four straight years, according to Capital Weather Gang’s tropical weather expert Brian McNoldy.\r\n',NULL,'','','',0,0,0,0,NULL,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,NULL,NULL),(27,'','Karoun Demirjian','https://www.washingtonpost.com/politics/senate-gop-defends-trump-despite-oath-to-be-impartial-impeachment-jurors/2019/12/15/1dd9ed8a-1f49-11ea-86f3-3b5019d451db_story.html','2019-12-15 18:48:43','“That’s in violation of the oath that they’re about to take, and it’s a complete subversion of the constitutional scheme,” Nadler said.\r\n\r\nAD\r\n\r\nSenators take an oath to “do impartial justice” at the start of any impeachment trial — but several Republican senators argued that impartiality doesn’t cover politics.\r\n\r\nAD\r\n\r\n“I am clearly made up my mind. I’m not trying to hide the fact that I have disdain for the accusations in the process,” Sen. Lindsey O. Graham (R-S.C.) said Sunday on CBS’s “Face the Nation.”\r\n\r\nGraham called “this whole thing” a “crock” and warned that Democrats were “weaponizing impeachment.”\r\n\r\n“I want to end it. I don’t want to legitimize it,” he said.\r\n\r\n“Senators are not required, like jurors in a criminal trial, to be sequestered, not to talk to anyone, not to coordinate. There’s no prohibition,” Sen. Ted Cruz (R-Tex.) said on “This Week,” calling impeachment “inherently a political exercise” and Trump’s impeachment a “partisan show trial.”\r\n\r\nAD\r\n\r\nSen. Rand Paul (R-Ky.), speaking Sunday on CNN’s “State of the Union,” also argued that there was nothing wrong with senators having already made up their minds. Calling impeachment an effort to “criminalize politics,” he noted that “we’re going to hear the evidence repeated, but we’re not going to hear any new evidence.”\r\n\r\nAD\r\n\r\nSenate GOP leaders have been telling allies that they want to limit the trial to a short proceeding, omitting any witnesses from testifying. That isn’t sitting well with House Democratic leaders, who contend that senators should use their trial to secure evidence and testimony that the White House prevented House investigators from accessing.\r\n\r\n“They don’t want the American people to see the facts,” House Intelligence Committee Chairman Adam B. Schiff (D-Calif.) said Sunday on ABC, appearing alongside Nadler.\r\n\r\nAD\r\n\r\n“They realize that what’s been presented in the House is already overwhelming, but that there’s more damning evidence to be had,” Schiff continued. “I hope that the senators will insist on getting the documents, on hearing from other witnesses, on making up their own mind, even if there are some senators who have decided out of their blind allegiance to this president that he can do nothing wrong.”\r\n\r\nAD\r\n\r\nNadler added that senators should “demand the testimony” of people like Secretary of State Mike Pompeo, acting White House chief of staff Mick Mulvaney and former national security adviser John Bolton, “who at the president’s instruction have refused to testify.”\r\n\r\nThere are some Senate Republicans who want to hear from witnesses at the trial. But they aren’t thinking about Pompeo, Mulvaney and Bolton; they’re thinking about the whistleblower and Hunter Biden.\r\n\r\nAD\r\n\r\n“You can be sure we’re going to allow the president to defend himself,” Cruz said, adding: “That means, I believe, if the president wants to call witnesses, if the president wants to call Hunter Biden or wants to call the whistleblower, the senate should allow the president to do so.”\r\n\r\nHunter Biden, son of former vice president Joe Biden, sat on the board of Ukrainian energy company Burisma for five years and was paid as much as $50,000 a month, despite having no expertise on the subject matter. As Democrats have made the case that Trump tried to use his office to pressure a foreign leader into announcing investigations against a political rival, several Republicans have rallied around the countercharge that Trump was right to be concerned about “corruption” involving the Bidens — though it does not appear that Joe Biden, who was closely involved in Ukraine policy, made any decisions to advantage the company.\r\n\r\nAD\r\n\r\n“I love Joe Biden, but none of us are above scrutiny,” Graham said Sunday, noting there were “legitimate concerns” about Hunter Biden’s activity. But he added that the Senate could look at all of those issues — as well as whatever new information Trump’s lawyer Rudolph W. Giuliani unearthed in his latest trip to Ukraine — “after impeachment” and should move ahead without witnesses.\r\n\r\nAD\r\n\r\nIt is not clear whether the senate will be forced to hold separate votes on witnesses — or if most of the GOP would hold rank in that situation. It takes 51 senators to approve a motion. There are 53 Republicans in the Senate, meaning the GOP can afford to lose no more than two senators on any motion for McConnell to fully control the course of the trial.\r\n\r\nPaul guessed that, ultimately, two Democratic senators would end up joining all Republicans in voting to acquit Trump, just as a handful of Democrats are expected to join the GOP in the House to vote against impeachment.\r\n\r\nAD\r\n\r\nPaul did not say who those two Democrats might be. At this point, some Democratic senators are taking pains to avoid committing to vote to convict the president, even if they are otherwise echoing House Democrats’ frustrations with the president’s actions.\r\n\r\nSen. Sherrod Brown (D-Ohio) said on “State of the Union” that Trump “did things Richard Nixon never did.” But he hedged when asked whether Trump’s transgressions rose to the need for removal, noting that senators should make that decision “based on the evidence.”\r\n\r\nAD\r\n',NULL,'Senate GOP defends Trump, despite oath to be impartial impeachment jurors','','washingtonpost.com',0,1711363848,0,582,NULL,NULL,156,182,0,0.86,72,0,160,101,0,0,0,328,3,0,NULL,NULL,NULL),(60,'','Rosalind S. Helderman','https://www.washingtonpost.com/politics/once-this-is-over-well-be-kings-how-lev-parnas-worked-his-way-into-trumps-world--and-now-is-rattling-it/2020/01/18/68542ff4-3940-11ea-9541-9107303481a4_story.html','2020-01-20 18:27:33','ffffffffffffff',NULL,'‘Once this is over, we’ll be kings’: How Lev Parnas worked his way into Trump’s world','','washingtonpost.com',0,1814934879,0,16224,NULL,NULL,166,4914,23,0.97,1553,244,5687,1506,37,0,374,9737,21,207,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',NULL,NULL);
+INSERT INTO `article` VALUES 
+(1
+,'the meaning of life'
+,'anonymous'
+,'www.life.com/meaning.htm'
+,'2012-01-01 15:00:00'
+,'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum.'
+,'ggggg'
+,'the meaning of life'
+,NULL
+,NULL
+,234234234
+,234234234
+,234234234
+,3333
+,''
+,444
+,33
+,3333
+,44
+,0.55
+,444
+,55
+,666
+,777
+,44
+,44
+,44
+,44
+,44
+,44
+,NULL
+,NULL
+,NULL
+,NULL)
+,(2
+,'the meaning of happiness'
+,'buddha'
+,'www.happinesstimes.com/happiness-meanng.html'
+,'2012-02-02 15:00:00'
+,'Scelerisque varius morbi enim nunc faucibus a. Laoreet id donec ultrices tincidunt arcu non sodales neque. Mi quis hendrerit dolor magna. Sapien eget mi proin sed libero enim. Nibh tortor id aliquet lectus. Nulla facilisi morbi tempus iaculis urna id volutpat lacus. Ipsum a arcu cursus vitae congue mauris rhoncus. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis. Ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Faucibus ornare suspendisse sed nisi lacus. Mattis enim ut tellus elementum sagittis vitae et.'
+,NULL
+,'the meaning of happiness'
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL)
+,(3
+,''
+,''
+,'https://www.google.com'
+,'2019-10-27 16:51:32'
+,'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non nisi. Eu mi bibendum neque egestas congue quisque. Tortor at risus viverra adipiscing at in tellus integer feugiat. Vel turpis nunc eget lorem dolor. Massa massa ultricies mi quis hendrerit dolor magna eget est. Faucibus et molestie ac feugiat sed lectus vestibulum. Massa tincidunt dui ut ornare lectus sit amet. Vel eros donec ac odio tempor. Nec feugiat nisl pretium fusce id velit. Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque.'
+,NULL
+,'hijklmnop hijklmnop'
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL
+,NULL)
+,(4
+,''
+,''
+,'www.washingtonpost.com/politics/as-warren-and-buttigieg-rise-the-democratic-presidential-race-is-competitive-and-fluid-a-washington-post-abc-news-poll-finds/2019/11/02/4b7aca3c-fccd-11e9-8906-ab6b60de9124_story.html'
+,'2019-11-11 04:28:28'
+,'With peak winds of 185 mph Hurricane Dorian became the strongest storm on record to strike the Bahamas Sunday and among the top few most intense ever observed in the Atlantic Ocean. The Category 5 storm next threatens to bring hurricane force winds coastal flooding and heavy rain to the east coast of Florida and Southeast U.S.\r\n\r\nDorian’s winds had only eased modestly down to 180 mph at 11 p.m. Sunday still generating “catastrophic conditions” in the northern Bahamas. The National Hurricane Center stated the storm made landfall on Grand Bahama Island at 11 p.m. after slamming into Great Abaco earlier in the day.\r\n\r\n“Dorian remains an incredibly powerful hurricane” the Hurricane Center wrote.\r\n\r\nAs the storm closes in on Florida’s east coast the National Hurricane Center has posted hurricane and storm surge warnings for some areas. The storm surge is the storm-driven rise in water above normally dry land at the coast:\r\n\r\nThe hurricane warning stretches from Jupiter Inlet (just north of West Palm Beach) to the Volusia/Brevard county line (just north of Titusville).\r\n\r\nThe storm surge warning spans from near West Palm Beach to Titusville. In some areas the surge could reach 4 to 7 feet the Hurricane Center projects.\r\n\r\nThese warnings are focused on the period from Monday night through early Wednesday. Tropical storm-force winds could begin in south Florida as soon as Monday afternoon and continue into Tuesday and Wednesday perhaps reaching hurricane-force Tuesday depending how close to the coast Dorian tracks.\r\n\r\nIn addition to the wind and surge about to three to six inches of rain is projected along Florida’s east coast.\r\n\r\nAlthough the center of Dorian containing its extreme Category 5 winds may remain offshore Florida'
+,NULL
+,''
+,''
+,''
+,0
+,0
+,0
+,0
+,NULL
+,NULL
+,0
+,0
+,0
+,0
+,0
+,0
+,0
+,0
+,0
+,0
+,0
+,0
+,0
+,0
+,NULL
+,NULL
+,NULL
+,NULL)
+,(27
+,''
+,'Karoun Demirjian'
+,'https://www.washingtonpost.com/politics/senate-gop-defends-trump-despite-oath-to-be-impartial-impeachment-jurors/2019/12/15/1dd9ed8a-1f49-11ea-86f3-3b5019d451db_story.html'
+,'2019-12-15 18:48:43'
+,'“That’s in violation of the oath that they’re about to take and it’s a complete subversion of the constitutional scheme” Nadler said.\r\n\r\nAD\r\n\r\nSenators take an oath to “do impartial justice” at the start of any impeachment trial — but several Republican senators argued that impartiality doesn’t cover politics.\r\n\r\nAD\r\n\r\n“I am clearly made up my mind. I’m not trying to hide the fact that I have disdain for the accusations in the process” Sen. Lindsey O. Graham (R-S.C.) said Sunday on CBS’s “Face the Nation.”\r\n\r\nGraham called “this whole thing” a “crock” and warned that Democrats were “weaponizing impeachment.”\r\n\r\n“I want to end it. I don’t want to legitimize it” he said.\r\n\r\n“Senators are not required like jurors in a criminal trial to be sequestered not to talk to anyone not to coordinate. There’s no prohibition” Sen. Ted Cruz (R-Tex.) said on “This Week” calling impeachment “inherently a political exercise” and Trump’s impeachment a “partisan show trial.”\r\n\r\nAD\r\n\r\nSen. Rand Paul (R-Ky.) speaking Sunday on CNN’s “State of the Union” also argued that there was nothing wrong with senators having already made up their minds. Calling impeachment an effort to “criminalize politics” he noted that “we’re going to hear the evidence repeated but we’re not going to hear any new evidence.”\r\n\r\nAD\r\n\r\nSenate GOP leaders have been telling allies that they want to limit the trial to a short proceeding omitting any witnesses from testifying. That isn’t sitting well with House Democratic leaders who contend that senators should use their trial to secure evidence and testimony that the White House prevented House investigators from accessing.\r\n\r\n“They don’t want the American people to see the facts” House Intelligence Committee Chairman Adam B. Schiff (D-Calif.) said Sunday on ABC appearing alongside Nadler.\r\n\r\nAD\r\n\r\n“They realize that what’s been presented in the House is already overwhelming but that there’s more damning evidence to be had” Schiff continued. “I hope that the senators will insist on getting the documents on hearing from other witnesses on making up their own mind even if there are some senators who have decided out of their blind allegiance to this president that he can do nothing wrong.”\r\n\r\nAD\r\n\r\nNadler added that senators should “demand the testimony” of people like Secretary of State Mike Pompeo acting White House chief of staff Mick Mulvaney and former national security adviser John Bolton “who at the president’s instruction have refused to testify.”\r\n\r\nThere are some Senate Republicans who want to hear from witnesses at the trial. But they aren’t thinking about Pompeo Mulvaney and Bolton; they’re thinking about the whistleblower and Hunter Biden.\r\n\r\nAD\r\n\r\n“You can be sure we’re going to allow the president to defend himself” Cruz said adding: “That means I believe if the president wants to call witnesses if the president wants to call Hunter Biden or wants to call the whistleblower the senate should allow the president to do so.”\r\n\r\nHunter Biden son of former vice president Joe Biden sat on the board of Ukrainian energy company Burisma for five years and was paid as much as $50000 a month despite having no expertise on the subject matter. As Democrats have made the case that Trump tried to use his office to pressure a foreign leader into announcing investigations against a political rival several Republicans have rallied around the countercharge that Trump was right to be concerned about “corruption” involving the Bidens — though it does not appear that Joe Biden who was closely involved in Ukraine policy made any decisions to advantage the company.\r\n\r\nAD\r\n\r\n“I love Joe Biden but none of us are above scrutiny” Graham said Sunday noting there were “legitimate concerns” about Hunter Biden’s activity. But he added that the Senate could look at all of those issues — as well as whatever new information Trump’s lawyer Rudolph W. Giuliani unearthed in his latest trip to Ukraine — “after impeachment” and should move ahead without witnesses.\r\n\r\nAD\r\n\r\nIt is not clear whether the senate will be forced to hold separate votes on witnesses — or if most of the GOP would hold rank in that situation. It takes 51 senators to approve a motion. There are 53 Republicans in the Senate meaning the GOP can afford to lose no more than two senators on any motion for McConnell to fully control the course of the trial.\r\n\r\nPaul guessed that ultimately two Democratic senators would end up joining all Republicans in voting to acquit Trump just as a handful of Democrats are expected to join the GOP in the House to vote against impeachment.\r\n\r\nAD\r\n\r\nPaul did not say who those two Democrats might be. At this point some Democratic senators are taking pains to avoid committing to vote to convict the president even if they are otherwise echoing House Democrats’ frustrations with the president’s actions.\r\n\r\nSen. Sherrod Brown (D-Ohio) said on “State of the Union” that Trump “did things Richard Nixon never did.” But he hedged when asked whether Trump’s transgressions rose to the need for removal noting that senators should make that decision “based on the evidence.”\r\n\r\nAD\r\n'
+,NULL
+,'Senate GOP defends Trump despite oath to be impartial impeachment jurors'
+,''
+,'washingtonpost.com'
+,0
+,1711363848
+,0
+,582
+,NULL
+,NULL
+,156
+,182
+,0
+,0.86
+,72
+,0
+,160
+,101
+,0
+,0
+,0
+,328
+,3
+,0
+,NULL
+,NULL
+,NULL
+,NULL)
+,(60
+,''
+,'Rosalind S. Helderman'
+,'https://www.washingtonpost.com/politics/once-this-is-over-well-be-kings-how-lev-parnas-worked-his-way-into-trumps-world--and-now-is-rattling-it/2020/01/18/68542ff4-3940-11ea-9541-9107303481a4_story.html'
+,'2020-01-20 18:27:33'
+,'ffffffffffffff'
+,NULL
+,'‘Once this is over we’ll be kings’: How Lev Parnas worked his way into Trump’s world'
+,''
+,'washingtonpost.com'
+,0
+,1814934879
+,0
+,16224
+,NULL
+,NULL
+,166
+,4914
+,23
+,0.97
+,1553
+,244
+,5687
+,1506
+,37
+,0
+,374
+,9737
+,21
+,207
+,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+,NULL
+,NULL
+,NULL)
+;
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +351,12 @@ CREATE TABLE `article_status` (
 
 LOCK TABLES `article_status` WRITE;
 /*!40000 ALTER TABLE `article_status` DISABLE KEYS */;
-INSERT INTO `article_status` VALUES (1,'BUZZ','Url From BuzzFeed'),(2,'USER','Url from User'),(3,'APPROVED','NICK Approved for tag works'),(4,'ERROR','Error');
+INSERT INTO `article_status` VALUES 
+(1,'BUZZ','Url From BuzzFeed'),
+(2,'USER','Url from User'),
+(3,'APPROVED','NICK Approved for tag works'),
+(4,'ERROR','Error'),
+(5,'SENT','Sent to Tagworks');
 /*!40000 ALTER TABLE `article_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,7 +408,6 @@ USE `publiceditor`;
 /*!50001 SET character_set_results     = cp850 */;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `article_current_status` AS select `a`.`id` AS `id`,`a`.`title` AS `title`,`a`.`author` AS `author`,`a`.`url` AS `url`,`a`.`publish_date` AS `publish_date`,`a`.`article_text` AS `article_text`,`st`.`status_code` AS `status_code` from (((`article` `a` join `article_has_status` `ahs`) join `article_status` `st`) join `article_sub_status_view` `assv`) where ((`ahs`.`article_id` = `assv`.`article_id`) and (`ahs`.`date_changed` = `assv`.`MaxDateTime`) and (`a`.`id` = `assv`.`article_id`) and (`st`.`id` = `ahs`.`article_status_id`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -215,7 +425,6 @@ USE `publiceditor`;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `article_status_view` AS select `ahs`.`id` AS `id`,`ahs`.`article_id` AS `article_id`,`ahs`.`date_changed` AS `date_changed`,`ahs`.`comment` AS `comment`,`ast`.`status_code` AS `status_code`,`ast`.`status_text` AS `status_text` from (`article_has_status` `ahs` join `article_status` `ast`) where (`ahs`.`article_status_id` = `ast`.`id`) order by `ahs`.`id` desc */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -233,7 +442,6 @@ USE `publiceditor`;
 /*!50001 SET character_set_results     = cp850 */;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `article_sub_status_view` AS select `article_has_status`.`article_id` AS `article_id`,max(`article_has_status`.`date_changed`) AS `MaxDateTime` from `article_has_status` group by `article_has_status`.`article_id` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;

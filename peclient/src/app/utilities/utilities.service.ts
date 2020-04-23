@@ -11,7 +11,7 @@ export class UtilitiesService {
   ) { }
 
   doSend() {
-  	return this.http.get('api/article/s3');
+  	return this.http.get('api/article/s3')
   }
 
   doBuzz() {
