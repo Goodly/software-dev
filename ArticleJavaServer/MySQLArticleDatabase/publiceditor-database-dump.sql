@@ -43,7 +43,7 @@ CREATE TABLE `article` (
   `domain_name` char(100) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   `buzzsumo_article_id` int(11) DEFAULT NULL,
-  `published_date` int(11) DEFAULT NULL,
+  `published_date` timestamp DEFAULT NULL,
   `total_shares` int(11) DEFAULT NULL,
   `thumbnail_url` char(200) DEFAULT NULL,
   `num_words` int(11) DEFAULT NULL,
@@ -78,18 +78,18 @@ LOCK TABLES `article` WRITE;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
 INSERT INTO `article` VALUES 
 (1
-,'the meaning of life'
-,'anonymous'
+,'title test'
+,'author test'
 ,'www.life.com/meaning.htm'
 ,'2012-01-01 15:00:00'
 ,'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum.'
-,'ggggg'
-,'the meaning of life'
+,'author name test'
+,'article title test'
 ,NULL
-,NULL
+,'www.life.com'
 ,234234234
 ,234234234
-,234234234
+,'2012-01-01 15:00:00'
 ,3333
 ,''
 ,444
@@ -108,176 +108,6 @@ INSERT INTO `article` VALUES
 ,44
 ,44
 ,NULL
-,NULL
-,NULL
-,NULL)
-,(2
-,'the meaning of happiness'
-,'buddha'
-,'www.happinesstimes.com/happiness-meanng.html'
-,'2012-02-02 15:00:00'
-,'Scelerisque varius morbi enim nunc faucibus a. Laoreet id donec ultrices tincidunt arcu non sodales neque. Mi quis hendrerit dolor magna. Sapien eget mi proin sed libero enim. Nibh tortor id aliquet lectus. Nulla facilisi morbi tempus iaculis urna id volutpat lacus. Ipsum a arcu cursus vitae congue mauris rhoncus. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis. Ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Faucibus ornare suspendisse sed nisi lacus. Mattis enim ut tellus elementum sagittis vitae et.'
-,NULL
-,'the meaning of happiness'
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL)
-,(3
-,''
-,''
-,'https://www.google.com'
-,'2019-10-27 16:51:32'
-,'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non nisi. Eu mi bibendum neque egestas congue quisque. Tortor at risus viverra adipiscing at in tellus integer feugiat. Vel turpis nunc eget lorem dolor. Massa massa ultricies mi quis hendrerit dolor magna eget est. Faucibus et molestie ac feugiat sed lectus vestibulum. Massa tincidunt dui ut ornare lectus sit amet. Vel eros donec ac odio tempor. Nec feugiat nisl pretium fusce id velit. Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque.'
-,NULL
-,'hijklmnop hijklmnop'
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL
-,NULL)
-,(4
-,''
-,''
-,'www.washingtonpost.com/politics/as-warren-and-buttigieg-rise-the-democratic-presidential-race-is-competitive-and-fluid-a-washington-post-abc-news-poll-finds/2019/11/02/4b7aca3c-fccd-11e9-8906-ab6b60de9124_story.html'
-,'2019-11-11 04:28:28'
-,'With peak winds of 185 mph Hurricane Dorian became the strongest storm on record to strike the Bahamas Sunday and among the top few most intense ever observed in the Atlantic Ocean. The Category 5 storm next threatens to bring hurricane force winds coastal flooding and heavy rain to the east coast of Florida and Southeast U.S.\r\n\r\nDorian’s winds had only eased modestly down to 180 mph at 11 p.m. Sunday still generating “catastrophic conditions” in the northern Bahamas. The National Hurricane Center stated the storm made landfall on Grand Bahama Island at 11 p.m. after slamming into Great Abaco earlier in the day.\r\n\r\n“Dorian remains an incredibly powerful hurricane” the Hurricane Center wrote.\r\n\r\nAs the storm closes in on Florida’s east coast the National Hurricane Center has posted hurricane and storm surge warnings for some areas. The storm surge is the storm-driven rise in water above normally dry land at the coast:\r\n\r\nThe hurricane warning stretches from Jupiter Inlet (just north of West Palm Beach) to the Volusia/Brevard county line (just north of Titusville).\r\n\r\nThe storm surge warning spans from near West Palm Beach to Titusville. In some areas the surge could reach 4 to 7 feet the Hurricane Center projects.\r\n\r\nThese warnings are focused on the period from Monday night through early Wednesday. Tropical storm-force winds could begin in south Florida as soon as Monday afternoon and continue into Tuesday and Wednesday perhaps reaching hurricane-force Tuesday depending how close to the coast Dorian tracks.\r\n\r\nIn addition to the wind and surge about to three to six inches of rain is projected along Florida’s east coast.\r\n\r\nAlthough the center of Dorian containing its extreme Category 5 winds may remain offshore Florida'
-,NULL
-,''
-,''
-,''
-,0
-,0
-,0
-,0
-,NULL
-,NULL
-,0
-,0
-,0
-,0
-,0
-,0
-,0
-,0
-,0
-,0
-,0
-,0
-,0
-,0
-,NULL
-,NULL
-,NULL
-,NULL)
-,(27
-,''
-,'Karoun Demirjian'
-,'https://www.washingtonpost.com/politics/senate-gop-defends-trump-despite-oath-to-be-impartial-impeachment-jurors/2019/12/15/1dd9ed8a-1f49-11ea-86f3-3b5019d451db_story.html'
-,'2019-12-15 18:48:43'
-,'“That’s in violation of the oath that they’re about to take and it’s a complete subversion of the constitutional scheme” Nadler said.\r\n\r\nAD\r\n\r\nSenators take an oath to “do impartial justice” at the start of any impeachment trial — but several Republican senators argued that impartiality doesn’t cover politics.\r\n\r\nAD\r\n\r\n“I am clearly made up my mind. I’m not trying to hide the fact that I have disdain for the accusations in the process” Sen. Lindsey O. Graham (R-S.C.) said Sunday on CBS’s “Face the Nation.”\r\n\r\nGraham called “this whole thing” a “crock” and warned that Democrats were “weaponizing impeachment.”\r\n\r\n“I want to end it. I don’t want to legitimize it” he said.\r\n\r\n“Senators are not required like jurors in a criminal trial to be sequestered not to talk to anyone not to coordinate. There’s no prohibition” Sen. Ted Cruz (R-Tex.) said on “This Week” calling impeachment “inherently a political exercise” and Trump’s impeachment a “partisan show trial.”\r\n\r\nAD\r\n\r\nSen. Rand Paul (R-Ky.) speaking Sunday on CNN’s “State of the Union” also argued that there was nothing wrong with senators having already made up their minds. Calling impeachment an effort to “criminalize politics” he noted that “we’re going to hear the evidence repeated but we’re not going to hear any new evidence.”\r\n\r\nAD\r\n\r\nSenate GOP leaders have been telling allies that they want to limit the trial to a short proceeding omitting any witnesses from testifying. That isn’t sitting well with House Democratic leaders who contend that senators should use their trial to secure evidence and testimony that the White House prevented House investigators from accessing.\r\n\r\n“They don’t want the American people to see the facts” House Intelligence Committee Chairman Adam B. Schiff (D-Calif.) said Sunday on ABC appearing alongside Nadler.\r\n\r\nAD\r\n\r\n“They realize that what’s been presented in the House is already overwhelming but that there’s more damning evidence to be had” Schiff continued. “I hope that the senators will insist on getting the documents on hearing from other witnesses on making up their own mind even if there are some senators who have decided out of their blind allegiance to this president that he can do nothing wrong.”\r\n\r\nAD\r\n\r\nNadler added that senators should “demand the testimony” of people like Secretary of State Mike Pompeo acting White House chief of staff Mick Mulvaney and former national security adviser John Bolton “who at the president’s instruction have refused to testify.”\r\n\r\nThere are some Senate Republicans who want to hear from witnesses at the trial. But they aren’t thinking about Pompeo Mulvaney and Bolton; they’re thinking about the whistleblower and Hunter Biden.\r\n\r\nAD\r\n\r\n“You can be sure we’re going to allow the president to defend himself” Cruz said adding: “That means I believe if the president wants to call witnesses if the president wants to call Hunter Biden or wants to call the whistleblower the senate should allow the president to do so.”\r\n\r\nHunter Biden son of former vice president Joe Biden sat on the board of Ukrainian energy company Burisma for five years and was paid as much as $50000 a month despite having no expertise on the subject matter. As Democrats have made the case that Trump tried to use his office to pressure a foreign leader into announcing investigations against a political rival several Republicans have rallied around the countercharge that Trump was right to be concerned about “corruption” involving the Bidens — though it does not appear that Joe Biden who was closely involved in Ukraine policy made any decisions to advantage the company.\r\n\r\nAD\r\n\r\n“I love Joe Biden but none of us are above scrutiny” Graham said Sunday noting there were “legitimate concerns” about Hunter Biden’s activity. But he added that the Senate could look at all of those issues — as well as whatever new information Trump’s lawyer Rudolph W. Giuliani unearthed in his latest trip to Ukraine — “after impeachment” and should move ahead without witnesses.\r\n\r\nAD\r\n\r\nIt is not clear whether the senate will be forced to hold separate votes on witnesses — or if most of the GOP would hold rank in that situation. It takes 51 senators to approve a motion. There are 53 Republicans in the Senate meaning the GOP can afford to lose no more than two senators on any motion for McConnell to fully control the course of the trial.\r\n\r\nPaul guessed that ultimately two Democratic senators would end up joining all Republicans in voting to acquit Trump just as a handful of Democrats are expected to join the GOP in the House to vote against impeachment.\r\n\r\nAD\r\n\r\nPaul did not say who those two Democrats might be. At this point some Democratic senators are taking pains to avoid committing to vote to convict the president even if they are otherwise echoing House Democrats’ frustrations with the president’s actions.\r\n\r\nSen. Sherrod Brown (D-Ohio) said on “State of the Union” that Trump “did things Richard Nixon never did.” But he hedged when asked whether Trump’s transgressions rose to the need for removal noting that senators should make that decision “based on the evidence.”\r\n\r\nAD\r\n'
-,NULL
-,'Senate GOP defends Trump despite oath to be impartial impeachment jurors'
-,''
-,'washingtonpost.com'
-,0
-,1711363848
-,0
-,582
-,NULL
-,NULL
-,156
-,182
-,0
-,0.86
-,72
-,0
-,160
-,101
-,0
-,0
-,0
-,328
-,3
-,0
-,NULL
-,NULL
-,NULL
-,NULL)
-,(60
-,''
-,'Rosalind S. Helderman'
-,'https://www.washingtonpost.com/politics/once-this-is-over-well-be-kings-how-lev-parnas-worked-his-way-into-trumps-world--and-now-is-rattling-it/2020/01/18/68542ff4-3940-11ea-9541-9107303481a4_story.html'
-,'2020-01-20 18:27:33'
-,'ffffffffffffff'
-,NULL
-,'‘Once this is over we’ll be kings’: How Lev Parnas worked his way into Trump’s world'
-,''
-,'washingtonpost.com'
-,0
-,1814934879
-,0
-,16224
-,NULL
-,NULL
-,166
-,4914
-,23
-,0.97
-,1553
-,244
-,5687
-,1506
-,37
-,0
-,374
-,9737
-,21
-,207
-,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
 ,NULL
 ,NULL
 ,NULL)

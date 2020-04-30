@@ -60,10 +60,10 @@ public class AuthService {
 	
 	private boolean authorize(String compactSerialization) {
 		
-//		if (compactSerialization == null || compactSerialization.length() < 1) {
-//			logger.info("header not present - dev mode - accept");
-//			return true;
-//		}
+		if (compactSerialization == null || compactSerialization.length() < 1) {
+			logger.info("header not present - dev mode - accept");
+			return true;
+		}
 	    
 		// Set the compact serialization on the JWS
 	    try {
