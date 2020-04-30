@@ -31,6 +31,7 @@ private static org.slf4j.Logger logger = LoggerFactory.getLogger(BuzzService.cla
         logger.info(res);
         JSONObject j = new JSONObject(res);
         logger.info(j.toString());
+        JSONArray a = j.optJSONArray("results");
         JSONObject buzzEntry = null;
         if (a != null && a.length() > 0) {
             buzzEntry = a.getJSONObject(0);

@@ -119,11 +119,10 @@ public class ArticleService {
 
 	}
 	
-	public JSONObject processBatchArticle() {
+	public JSONArray processBatchArticle() {
 		logger.info("in articleService - processBatchArticle");
 		
 		JSONArray articles = buzzService.getTodaysTop();
-		JSONObject res = new JSONObject();
 		
 		logger.info("got todays top from buzz - processing articles " + articles.length());
 		
@@ -163,17 +162,15 @@ public class ArticleService {
 			}
 			
 			//set article's date updated
+			//updated buzz
 			Integer updatedAt = Integer.parseInt(new SimpleDateFormat("YYYYMMDD").format(new Date()));			//long epoch = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").parse("01/01/1970 01:00:00").getTime() / 1000;
 			updatedArticle.setUpdatedAt(updatedAt);
 			
 			// save newly created or updated article
 			articleRepository.save(updatedArticle);
-			
-			res.put(updatedArticle.getUrl(), updatedArticle.getArticleTitle());
 
 		});
-		logger.info(res.toString(2));
-		return res;
+		return articles;
 
 		
 
