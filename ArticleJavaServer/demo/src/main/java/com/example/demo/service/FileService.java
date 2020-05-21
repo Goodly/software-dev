@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.regex.Pattern;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.*;
@@ -44,17 +45,25 @@ public class FileService {
 	@Autowired ArticleRepository articleRepository;
 	
 	public boolean fileExists(String pathAndName) {
-		
 		return Files.exists(Paths.get(pathAndName)); 
 	}
+	
 	public ArticleEntity makeFile(ArticleEntity article) {
 
+		//filename of files inside tgz are in format
+		//sha256.tgz/CovidArticles/filename.txt
+		//sha256.tgz/CovidArticles/metadata.json
+		
 		String sha256hex = DigestUtils.sha256Hex(article.getArticleText());
 		// set HASH
 		article.setArticleHash(sha256hex);
 		
+		//drop everything including and after ?
+		String[] q = article.getUrl().split(Pattern.quote("?"));
+		String firstPart = q[0];
+		
 		//set filename (first 60 chars AFTER last slash plus ".txt"
-		String[] parts = article.getUrl().split("/");
+		String[] parts = firstPart.split("/");
 		String filename = parts[parts.length - 1];
 		if (filename.length() == 0) filename = "noname";
 		int endChar = filename.length();
@@ -64,18 +73,21 @@ public class FileService {
 			endChar = endChar - 1;
 		
 		filename = filename.substring(0, endChar).concat(".txt");
-		
-				
-		// strip off https:// or http://
-		String tempURL = article.getUrl();
-		String tempURL2 = tempURL.replace("https://", "");
+						
+		// strip off https:// or http:// (from url string WITHOUT question-mark)
+		String tempURL2 = firstPart.replace("https://", "");
 		String URLNoProtocol = tempURL2.replace("http://","");
+		
 
+		String filenameTag = "CovidArticles/";
 		String articleDir = "/var/article/temp/";
+		//delete temp dir
+		FileUtils.deleteQuietly(new File(articleDir));
+
 		String zipDestDir = "/var/article/";
 		String zipDestFilename = "article";
-		String articleFilename = articleDir + filename;
-		String metadataFilename = articleDir + "metadata.json";
+		String articleFilename = articleDir + filenameTag + filename;
+		String metadataFilename = articleDir + filenameTag + "metadata.json";
 		
 		File destFile = new File(zipDestDir + URLNoProtocol + "/" + sha256hex + ".tgz");
 		article.setFilename(destFile.toString());
@@ -95,7 +107,12 @@ public class FileService {
 		// CREATE METADATA FILE (metadata.json)
 		JSONObject metadata = new JSONObject();
 		
-		metadata.put("extra", new JSONObject(article));
+		JSONObject tempMeta = new JSONObject(article);
+
+		//override filename for tagworks
+		tempMeta.put("filename", filenameTag + filename);
+		
+		metadata.put("extra", tempMeta);
 		metadata.put("file_sha256", sha256hex);
 		metadata.put("filename", filename);
 
@@ -139,6 +156,9 @@ public class FileService {
 		
 		//delete metadata file
 		FileUtils.deleteQuietly(metadataFile);
+
+		//delete temp dir
+		FileUtils.deleteQuietly(new File(articleDir));
 
 		return article;
 

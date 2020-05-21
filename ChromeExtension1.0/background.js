@@ -22,12 +22,12 @@ function changeIcon(audited) {
 		});
 	}
 }
-
 /**
- * Change icon according to current URL's tab.
+ * Change icon according to current tab's URL.
  */
 function changeIconBasedOnUrl() {
 	chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+		console.log(tabs);
 		verifyAudit(tabs[0].url, changeIcon);
 	});
 }

@@ -38,13 +38,13 @@ function checkURL() {
  * @param {String} targetURL URL to be submitted.
  */
 function submitURL(targetURL) {
-	//Generate a new request.
+	// Generate a new request.
 	var xhttp = new XMLHttpRequest();
 	//Do the following function when ready.
 	xhttp.onreadystatechange = checkURL;
 	//The first part of the queried URL allows us to make Cross Origin HTTPS requests,
 	//The second part of the URL submits the URL to the database.
-	xhttp.open("POST", "http://157.230.221.241:8080/demo-0.0.1-SNAPSHOT/article/submit?url=" 
+	xhttp.open("POST", "http://localhost:8888/demo-0.0.1-SNAPSHOT/article/?url="
 		+ targetURL.toString(), true);
 	xhttp.send();
 }
@@ -81,11 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 	};
 	chrome.tabs.query({active: true, currentWindow: true}, tabs => {
-		verifyAudit(tabs[0].url, indicateAudited);
+		verifyAudit(tabs[0].url, audited => {
+			indicateAudited(audited);
+			openVetted(audited);
+		});
 	});
 
 });
 
-chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, tabs => {
 	setPreviewURL(tabs[0].url);
 });

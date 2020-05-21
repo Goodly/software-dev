@@ -307,7 +307,7 @@ function drawVis(d, root, me, div) {
     } else if (d.height == 1) {
         d3.select(nodeToPath.get(d.parent)).style('display', 'none');
     }
-    console.log(d.data.data['Credibility Indicator Name']);
+    //console.log(d.data.data['Credibility Indicator Name']);
     div.transition()
             .duration(200)
             .style("opacity", .9);

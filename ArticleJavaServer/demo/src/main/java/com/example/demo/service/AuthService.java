@@ -11,6 +11,9 @@ import org.jose4j.lang.JoseException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -24,11 +27,12 @@ import javax.servlet.http.HttpServletRequest;
 public class AuthService {
 	private static org.slf4j.Logger logger = LoggerFactory.getLogger(AuthService.class);
 	
+	@Autowired private EnvironmentService env;
 	// Create a new JsonWebSignature object
     private JsonWebSignature jws = new JsonWebSignature();
     private JsonWebKeySet jsonWebKeySet = null;
 	private String FUNNEL_ADMINISTRATOR = "Funnel_Administrator";
-
+	private boolean dev = false;
 
 	AuthService() {
 	    jws.setAlgorithmConstraints(new AlgorithmConstraints(ConstraintType.WHITELIST,   AlgorithmIdentifiers.RSA_USING_SHA256));
@@ -60,7 +64,9 @@ public class AuthService {
 	
 	private boolean authorize(String compactSerialization) {
 		
-		if (compactSerialization == null || compactSerialization.length() < 1) {
+		if (env.isDev() && 
+				(compactSerialization == null || compactSerialization.length() < 1)
+			) {
 			logger.info("header not present - dev mode - accept");
 			return true;
 		}

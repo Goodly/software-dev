@@ -58,9 +58,33 @@ private static org.slf4j.Logger logger = LoggerFactory.getLogger(BuzzService.cla
         ResponseEntity<String> response = restTemplate.getForEntity(url.toString(),String.class);
         String res = response.getBody();
         JSONObject j = new JSONObject(res);
-        logger.info(j.toString(2));
         JSONArray a = j.optJSONArray("results");
-        return a;
+        JSONArray filtered = new JSONArray();
+        a.forEach(art -> {
+        	JSONObject article = (JSONObject) art;
+        	
+        	boolean add = true;
+            
+        	//exclude youtube
+        	if (article.optString("domain_name", "").equals("youtube.com")) {
+            	logger.info("skipping youtube");
+            	add = false;
+            } 
+    		// exclude word count > 700
+            logger.info(article.toString(2));
+        	if (article.optInt("num_words", 701) > 700) {
+            	logger.info("skipping > 700 words");
+            	add = false;
+            }
+        	
+            if (add) {
+            	logger.info(j.toString(2));
+            	filtered.put(article);
+            }            	
+            
+        });
+        
+        return filtered;
         
 	}
 

@@ -1,6 +1,6 @@
 # Query Mini-Extension
 
-Submit articles to be vetted by Public Editor conveniently through this extension. This extension also automatically checks if the article you visit has already been vetted.
+Submit articles to be vetted by Public Editor conveniently through this extension. This extension also automatically checks if articles you visit has already been vetted. Uses local server for development purposes.
 
 
 The rest of this readme describes the function of each line of code in the mini-extension. Each line in the description corresponds with a line of code in the respective file.

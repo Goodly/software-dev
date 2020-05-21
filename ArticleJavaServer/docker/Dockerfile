@@ -37,10 +37,14 @@ COPY ./scraper/s3-put.py .
 
 RUN rm -rf /var/lib/apt/lists/*
 
-WORKDIR /home
-COPY /demo article_funnel
 # Maven wants to run in this dir
 WORKDIR /home/article_funnel
+COPY /demo/pom.xml .
+# build all dependencies for offline use
+RUN mvn dependency:go-offline -B
+
+# Now copy rest of source
+COPY /demo .
 RUN mvn --batch-mode install
 RUN cp -av target/demo-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps
 

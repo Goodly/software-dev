@@ -13,13 +13,11 @@ export default async function verifyAudit(url, callback) {
 		callback(false);
 		return;
 	}
-	let response = await fetch("http://157.230.221.241:8080/demo-0.0.1-SNAPSHOT/article/");
-	let data = await response.json();
-	for (let article of data) {
-		if (article.visData && article.url.localeCompare(url, {sensitivity: 'case'}) === 0) {
-			callback(true);
-			return;
-		}
+	let response = await fetch("http://localhost:8888/demo-0.0.1-SNAPSHOT/article/?url=" + url);
+	let articleObjects = (await response.json())[0];
+	if (articleObjects && articleObjects.visData) {
+		callback(true);
+		return;
 	}
 	callback(false);
 }
