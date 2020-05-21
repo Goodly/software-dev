@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.JSONObject;
+import org.json.JSONArray;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -151,7 +152,7 @@ public class ArticleController {
 		}
 		
 		logger.info("in buzz2 controller");
-		JSONObject r = articleService.processBatchArticle();
+		JSONArray r = articleService.processBatchArticle();
 		logger.info(r.toString(2));
 		return new ResponseEntity(r.toString(2), HttpStatus.OK);
 		

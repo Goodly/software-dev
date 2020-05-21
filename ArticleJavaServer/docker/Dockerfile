@@ -41,7 +41,7 @@ WORKDIR /home
 COPY /demo article_funnel
 # Maven wants to run in this dir
 WORKDIR /home/article_funnel
-# RUN mvn --batch-mode install
+RUN mvn --batch-mode install
 RUN cp -av target/demo-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps
 
 WORKDIR $CATALINA_HOME

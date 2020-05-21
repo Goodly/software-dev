@@ -5,11 +5,11 @@ services:
       context: .
       dockerfile: docker/Dockerfile
     ports:
-      - "8888:8080"
+    - "8888:8080"
     depends_on:
-      - article_db
+    - article_db
     environment:
-      MYSQL_HOST: "article_db:3306"
+      MYSQL_HOST: "127.0.0.1:3306"
       MYSQL_DATABASE: "publiceditor"
       MYSQL_USER: "ArticleFunnelDev"
       MYSQL_PASSWORD: "TheQuickBrownFox!!123"
@@ -18,16 +18,17 @@ services:
       AWS_S3_REGION_NAME: ${AWS_S3_REGION_NAME}
       DATAFILES_BUCKETNAME: ${DATAFILES_BUCKETNAME}
       DATAFILES_LOCATION: ${DATAFILES_LOCATION}
+      ENVIRONMENT_FLAG: ${ENVIRONMENT_FLAG}
   article_db:
     build:
       context: .
       dockerfile: docker/Dockerfile-mysql
     ports:
-      - "3306:3306"
+    - "3306:3306"
     environment:
       MYSQL_ROOT_USER: "root"
       MYSQL_ROOT_PASSWORD: "CLoTbYDEmdNbfSxb"
-      MYSQL_HOST: "localhost"
+      MYSQL_HOST: "127.0.0.1"
       MYSQL_DATABASE: "publiceditor"
       MYSQL_USER: "ArticleFunnelDev"
       MYSQL_PASSWORD: "TheQuickBrownFox!!123"
