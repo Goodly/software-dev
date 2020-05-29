@@ -5,7 +5,7 @@
 		"pathRewrite": {"^/api" : ""}  
 	},
 	"/dev/*": {
-		"target": "http://localhost:8080/",
+		"target": "http://localhost:8888/demo-0.0.1-SNAPSHOT",
 		"secure": false,    
 		"pathRewrite": {"^/dev" : ""}  
 	}

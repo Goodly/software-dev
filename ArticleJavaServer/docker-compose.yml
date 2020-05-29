@@ -9,7 +9,7 @@ services:
     depends_on:
     - article_db
     environment:
-      MYSQL_HOST: "127.0.0.1:3306"
+      MYSQL_HOST: "article_db:3306"
       MYSQL_DATABASE: "publiceditor"
       MYSQL_USER: "ArticleFunnelDev"
       MYSQL_PASSWORD: "TheQuickBrownFox!!123"

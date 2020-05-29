@@ -60,4 +60,20 @@ export class UtilitiesComponent implements OnInit {
   	})
   }
 
+  updateMetrics() {
+    this.us.doMetrics().subscribe(res => {
+      console.log(res);
+      let r: string = "";
+      for (let [key, value] of Object.entries(res)) {
+        r = r + `${key}: ${value}` + "\n";
+      }
+      console.log("UPDATING METRICS BUTTON PRESSED")
+      console.log(r)
+
+      this.utilitiesForm.get('updateResults').setValue(r);
+
+    })
+
+  }
+
 }
