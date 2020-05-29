@@ -43,29 +43,41 @@ export class DashboardComponent implements OnInit {
 	  
 	this.dashboardForm.get('statusFilter').valueChanges.subscribe(val => {
 		console.log("filter value has changed", val)
-		this.ds.searchByStatus(val).subscribe((data: Article) => {
-			this.articles = data;
-			if(val == "popular")
-			{
-			//there's no field for publishedDate so I'm using publishDate instead
-			//sorting by date
-				this.articles.sort(
-	  	  			function(a, b) {
-						if (a.publishDate < b.publishDate) {
-							return 1;
-						}
-						if (a.publishDate > b.publishDate) {
-							return -1;
-						}
-					return 0;
-			});
-			//showing articles 0-49
-			for(let i = this.articles.length - 1; i >= 50;i--) 
-			{
-			this.articles.splice(i, 1);
+		if (val == "all")
+		{
+			this.ds.getArticles().subscribe((data: Article) => {
+				this.articles = data;
+				for(let x = 0; x < this.articles.size; x++) {
+					this.articleShow[x] = false;
+				}
+  			});
+		} else
+		{
+			this.ds.searchByStatus(val).subscribe((data: Article) => {
+				this.articles = data;
+				if(val == "popular")
+				{
+					console.log("hi");
+				//there's no field for publishedDate so I'm using publishDate instead
+				//sorting by date
+					this.articles.sort(
+		  	  			function(a, b) {
+							if (a.publishDate < b.publishDate) {
+								return 1;
+							}
+							if (a.publishDate > b.publishDate) {
+								return -1;
+							}
+						return 0;
+				});
+				//showing articles 0-49
+				for(let i = this.articles.length - 1; i >= 50;i--) 
+				{
+				this.articles.splice(i, 1);
+				}
 			}
+			});
 		}
-		});
 	});
 
 	//checkall
