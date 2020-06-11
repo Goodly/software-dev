@@ -65,7 +65,13 @@ public class FileService {
 		//set filename (first 60 chars AFTER last slash plus ".txt"
 		String[] parts = firstPart.split("/");
 		String filename = parts[parts.length - 1];
+		
 		if (filename.length() == 0) filename = "noname";
+		
+		if (Character.isDigit(filename.charAt(0))) {
+			filename = "a-".concat(filename);
+		}
+		
 		int endChar = filename.length();
 		if (endChar > 60) 
 			endChar = 59;
